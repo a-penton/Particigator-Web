@@ -1,25 +1,22 @@
-import logo from './assets/logo.svg';
 import './App.css';
-import AboutMe from './components/AboutMe'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import NavBar from './components/NavBar'
+import Home from './components/Home'
 
 function App() {
   return (
     <div className="App">
-      <AboutMe />
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* The commented code causes the app to stop working */}
+      {/* <Router>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/assignments" element={<Home />}></Route>
+          <Route path="/grades" element={<Home />}></Route>
+        </Routes>
+      </Router> */}
+      {/* For now, I am just using the navbar as this works on its own */}
+      <NavBar />
     </div>
   );
 }
