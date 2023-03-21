@@ -8,24 +8,12 @@ function NavBar() {
   return (
     <div className = "navbar">
         <div className = "links">
-            <a href="/">Home</a>
-            <a href="/assignments">Assignments</a>
-            <a href="/grades">Grades</a>
+            <Link to="/">Home</Link>
+            <Link to="/assignments">Assignments</Link>
+            <Link to="/grades">Grades</Link>
         </div>
     </div>
   )
-
-  // The commented code below causes the app to stop working
-
-  // return (
-  //   <div className = "navbar">
-  //       <div className = "links">
-  //           <Link to="/">Home</Link>
-  //           <Link to="/assignments">Assignments</Link>
-  //           <Link to="/grades">Grades</Link>
-  //       </div>
-  //   </div>
-  // )
 }
 
 export default NavBar;
