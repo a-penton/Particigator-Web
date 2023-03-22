@@ -1,12 +1,13 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Header from './components/Header'
 import NavBar from './components/NavBar'
 import Home from './components/Home'
 
 function App() {
   return (
     <div className="App">
-      {/* The commented code causes the app to stop working */}
+      <Header />
       <Router>
         <NavBar />
         <Routes>
