@@ -1,12 +1,16 @@
-import React, {useState} from 'react'
-import logo from '../assets/logo.svg';
-import './Login.css'
+import React, {useState} from 'react';
+import { Navigate } from 'react-router-dom';
+import './Login.css';
 
-function Login() {
+function Login({loggedIn, setLoggedIn}) {
 
   // set up states for email/password
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  if (loggedIn) {
+    return <Navigate to="/" />
+  }
 
   function handleEmailChange(event) {
     setEmail(event.target.value);
@@ -18,10 +22,16 @@ function Login() {
   // TODO: check email/password against backend
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(event.target.email.value)
-    console.log(event.target.password.value)
-    // TODO: placeholder check
-    // navigate to home page or incorrect login message
+    const email = event.target.email.value;
+    const password = event.target.password.value;
+    // placeholder check
+    if (password === "Aman") {
+      // navigate to home page
+      setLoggedIn(true);
+    }
+    else {
+      // TODO: incorrect login message
+    }
   }
 
   // have to return nested divs to center it on the page
