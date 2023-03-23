@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
 import logo from '../assets/logo.svg';
-import './Home.css'
+import './Login.css'
 
-function Home() {
+function Login() {
 
   // set up states for email/password
   const [email, setEmail] = useState("");
@@ -26,7 +26,7 @@ function Home() {
 
   // have to return nested divs to center it on the page
   return (
-    <div className="home-page">
+    <div className="login-page">
       <div className="welcome">
         <h3>Welcome to Particigator!</h3>
         <h4>Sign in to get started</h4>
@@ -56,4 +56,4 @@ function Home() {
   )
 }
 
-export default Home;
+export default Login;
