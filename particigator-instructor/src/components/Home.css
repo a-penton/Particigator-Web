@@ -1,0 +1,17 @@
+.home-page {
+	height: 100%;
+	padding: 0;
+	margin: auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	/* flex-direction:column; */
+}
+
+.login-form {
+	width: 100%;
+}
+
+input {
+	width: 50%;
+}

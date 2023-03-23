@@ -1,23 +1,59 @@
 import React, {useState} from 'react'
 import logo from '../assets/logo.svg';
+import './Home.css'
 
 function Home() {
-	return <div>
-		<header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-	</div>
+
+  // set up states for email/password
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  function handleEmailChange(event) {
+    setEmail(event.target.value);
+  }
+  function handlePasswordChange(event) {
+    setPassword(event.target.value);
+  }
+
+  // TODO: check email/password against backend
+  function handleSubmit(event) {
+    event.preventDefault();
+    console.log(event.target.email.value)
+    console.log(event.target.password.value)
+    // TODO: placeholder check
+    // navigate to home page or incorrect login message
+  }
+
+  // have to return nested divs to center it on the page
+  return (
+    <div className="home-page">
+      <div className="welcome">
+        <h3>Welcome to Particigator!</h3>
+        <h4>Sign in to get started</h4>
+        <form className="login-form" onSubmit={handleSubmit}>
+          <input 
+            type="text"
+            name="email"
+            value={email}
+            placeholder="Email"
+            onChange={handleEmailChange}
+          />
+          <br />
+          <input
+            type="password"
+            name="password"
+            value={password}
+            placeholder="Password"
+            onChange={handlePasswordChange}
+          />
+          <br />
+          <br />
+          <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="/">Sign Up</a></p>
+      </div>
+    </div>
+  )
 }
 
 export default Home;
