@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  /* Made height 80vmin so it fits on most of the page */
+  height: 80vmin;
 }
 
 .App-logo {
