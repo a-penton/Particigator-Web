@@ -1,8 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import { Navigate } from 'react-router-dom';
+import { LoginContext } from '../LoginContext';
 import './Login.css';
 
-function Login({loggedIn, setLoggedIn}) {
+function Login() {
+
+  const {loggedIn, setLoggedIn} = useContext(LoginContext);
 
   // set up states for email/password
   const [email, setEmail] = useState("");

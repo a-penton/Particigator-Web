@@ -1,6 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import React, {useState} from 'react'
+import { LoginContext } from './LoginContext';
 import Header from './components/Header';
 import Login from './components/Login';
 import Home from './components/Home';
@@ -12,15 +13,17 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home loggedIn={loggedIn} />} />
-          <Route path="/login" element={<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
-          <Route path="/assignments" element={<Assignments loggedIn={loggedIn} />} />
-          <Route path="/grades" element={<Grades loggedIn={loggedIn} />} />
-        </Routes>
-      </Router>
+      <LoginContext.Provider value={{loggedIn, setLoggedIn}}>
+        <Header />
+        <Router>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/assignments" element={<Assignments />} />
+            <Route path="/grades" element={<Grades />} />
+          </Routes>
+        </Router>
+      </LoginContext.Provider>
     </div>
   );
 }
