@@ -5,6 +5,7 @@ const MONGO_URI = "mongodb+srv://robinfintz:z7rITOGo3PY25vMw@cluster0.szon0.mong
 const DATABASE_NAME = "ParticiGator";
 const COLLECTIONS = {
     Students: "Students",
+    Questions: "Questions",
 }
 
 export async function connectToDatabase() {
@@ -22,5 +23,6 @@ export async function connectToDatabase() {
         _rawClient: client,
         ParticiGator: db,
         Students: db.collection(COLLECTIONS.Students),
+        Questions: db.collection(COLLECTIONS.Questions),
     };
 }

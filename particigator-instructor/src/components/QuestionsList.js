@@ -2,20 +2,20 @@ import { useState, useEffect } from 'react';
 import { API } from "../API";
 import "./UsersList.css"
 
-const fetchUsers = async () => {
-  return await API.getAllUsers();
+const fetchQuestions = async () => {
+  return await API.getAllQuestions();
 }
 
-const UsersList = () => {
-  const [users, setUsers] = useState(null);
+const QuestionsList = () => {
+  const [questions, setQuestions] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetchUsers();
-        setUsers(data);
+        const data = await fetchQuestions();
+        setQuestions(data);
         setIsLoading(false);
       } catch (error) {
         setError(error);
@@ -32,15 +32,15 @@ const UsersList = () => {
     <div className="Tabling">
         <table>
           <tr>
-            <th>Name</th>
             <th>ID</th>
+            <th>Question</th>
           </tr>
-      {users !== null ? 
-        users.map((user) => {
+      {questions !== null ? 
+        questions.map((question) => {
           return (
             <tr>
-              <td>{user.name}</td>
-              <td>{user.id}</td>
+              <td>{question.id}</td>
+              <td>{question.text}</td>
             </tr>
           )
         }) : null}
@@ -50,4 +50,4 @@ const UsersList = () => {
   );
   }
     
-    export default UsersList;
+    export default QuestionsList;

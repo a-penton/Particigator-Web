@@ -7,4 +7,9 @@ export class API {
     const response = await axios.get(`${api}/users`);
     return response.data;
   }
+
+  static async getAllQuestions() {
+    const response = await axios.get(`${api}/questions`);
+    return response.data;
+  }
 }

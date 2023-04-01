@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom';
 import NavBar from './NavBar';
-import UsersList from './UsersList';
+import QuestionsList from './QuestionsList';
 
 function Assignments({loggedIn}) {
 	if (!loggedIn) {
@@ -11,7 +11,7 @@ function Assignments({loggedIn}) {
 		<div>
 			<NavBar />
 			<h1>Assignments Page</h1>
-			<UsersList />
+			<QuestionsList/>
 		</div>
 	)
 }
