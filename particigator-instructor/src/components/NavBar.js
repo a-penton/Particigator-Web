@@ -1,9 +1,18 @@
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
+import { useContext } from 'react';
+import { LoginContext } from '../LoginContext';
 import "./NavBar.css"
 
 
 function NavBar() {
+
+  const {setLoggedIn} = useContext(LoginContext);
+
+  function logout() {
+    setLoggedIn(false);
+    localStorage.removeItem('loggedIn');
+  }
 
   return (
     <div className = "navbar">
@@ -11,6 +20,7 @@ function NavBar() {
             <Link to="/">Home</Link>
             <Link to="/assignments">Assignments</Link>
             <Link to="/grades">Grades</Link>
+            <button onClick={logout}>Log out</button>
         </div>
     </div>
   )

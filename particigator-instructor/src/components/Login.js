@@ -31,6 +31,7 @@ function Login() {
     if (password === "Aman") {
       // navigate to home page
       setLoggedIn(true);
+      localStorage.setItem("loggedIn", true);
     }
     else {
       // TODO: incorrect login message
