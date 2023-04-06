@@ -2,6 +2,7 @@ import { Navigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { LoginContext } from '../LoginContext';
 import NavBar from './NavBar';
+import AdminList from './AdminList';
 
 function Home() {
 
@@ -15,6 +16,7 @@ function Home() {
 		<div>
 			<NavBar />
 			<h1>Home Page</h1>
+			<AdminList/>
 		</div>
 	)
 }

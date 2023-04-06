@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import { connectToDatabase } from './Database';
 import { buildUsersControllers } from './Controllers/Users';
 import { buildQuestionsControllers } from './Controllers/Questions';
+import { buildAdminControllers } from './Controllers/Admin';
 
 async function main() {
   const app = express();
@@ -15,6 +16,7 @@ async function main() {
   const databaseConnection = await connectToDatabase();
   const usersControllers = buildUsersControllers(databaseConnection);
   const questionsControllers = buildQuestionsControllers(databaseConnection);
+  const adminControllers = buildAdminControllers(databaseConnection);
 
   app.get('/users', usersControllers.getAll);
   app.get('/users/:id', usersControllers.getById);
@@ -27,6 +29,12 @@ async function main() {
   app.post('/questions', questionsControllers.create);
   app.put('/questions/:id', questionsControllers.update);
   app.delete('/questions/:id', questionsControllers.delete);
+
+  app.get('/admin', adminControllers.getAll);
+  app.get('/admin/:id', adminControllers.getById);
+  app.post('/admin', adminControllers.create);
+  app.put('/admin/:id', adminControllers.update);
+  app.delete('/admin/:id', adminControllers.delete);
   
   app.listen(3001, () => {
     console.log('Server started on port 3001');
