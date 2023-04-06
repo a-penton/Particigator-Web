@@ -4,6 +4,7 @@ import React, {useState, useEffect} from 'react'
 import { LoginContext } from './LoginContext';
 import Header from './components/Header';
 import Login from './components/Login';
+import Signup from './components/Signup';
 import Home from './components/Home';
 import Grades from './components/Grades';
 import Assignments from './components/Assignments';
@@ -25,6 +26,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
             <Route path="/assignments" element={<Assignments />} />
             <Route path="/grades" element={<Grades />} />
           </Routes>
