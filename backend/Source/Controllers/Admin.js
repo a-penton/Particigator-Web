@@ -6,9 +6,9 @@ export function buildAdminControllers(databaseConnection) {
         const documents = await db.Admin.find({}).toArray()
         return res.send(documents);
       },
-      getById: async (req, res) => {
-        const id = req.params.id;
-        const documents = await db.Admin.findOne({ id });
+      getByEmail: async (req, res) => {
+        const email = req.params.email;
+        const documents = await db.Admin.findOne({ email });
         if (documents === null) {
           return res.status(404).send('User not found');
         }
@@ -22,8 +22,8 @@ export function buildAdminControllers(databaseConnection) {
         return res.sendStatus(501)
       },
       delete: async (req, res) => {
-        const id = req.params.id;
-        await collection.deleteOne({ id });
+        const email = req.params.email;
+        await collection.deleteOne({ email });
         return res.sendStatus(200);
       }
     }
