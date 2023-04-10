@@ -2,6 +2,11 @@ import React, {useState, useContext} from 'react';
 import { Navigate } from 'react-router-dom';
 import { LoginContext } from '../LoginContext';
 import './Login.css';
+import { API } from "../API";
+
+const checkAdminCredentials = async (data) => {
+	return await API.checkAdminCredentials(data);
+}
 
 function Login() {
 
@@ -10,6 +15,11 @@ function Login() {
   // set up states for email/password
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [formData, setFormData] = useState({
+		email: '',
+    password: '',
+	});
+  const [actualPassword, setActualPassword] = useState("");
 
   if (loggedIn) {
     return <Navigate to="/" />
@@ -17,24 +27,52 @@ function Login() {
 
   function handleEmailChange(event) {
     setEmail(event.target.value);
+    setFormData({
+			...formData,
+			email: event.target.value
+		});
   }
   function handlePasswordChange(event) {
     setPassword(event.target.value);
+    setFormData({
+			...formData,
+			password: event.target.value
+		});
   }
 
   // TODO: check email/password against backend
   function handleSubmit(event) {
     event.preventDefault();
-    const email = event.target.email.value;
-    const password = event.target.password.value;
+    // const email = event.target.email.value;
+    // const password = event.target.password.value;
     // placeholder check
-    if (password === "Aman") {
-      // navigate to home page
+    // if (password === "Aman") {
+    //   // navigate to home page
+    //   setLoggedIn(true);
+    //   localStorage.setItem("loggedIn", true);
+    // }
+    // else {
+    //   // TODO: incorrect login message
+    // }
+    const retrieveData = async () => {
+      try {
+        const data = await checkAdminCredentials(formData.email);
+        setActualPassword(data);
+      } catch (error) {
+        window.alert("Email not found. Please try again.");
+      }
+    };
+    retrieveData();
+
+    console.log(password)
+    console.log(actualPassword)
+    if(actualPassword === password){
       setLoggedIn(true);
       localStorage.setItem("loggedIn", true);
+      console.log(actualPassword);
     }
     else {
-      // TODO: incorrect login message
+      window.alert("Incorrect credentials. Please try again.");
     }
   }
 

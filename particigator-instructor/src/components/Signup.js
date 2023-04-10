@@ -2,6 +2,11 @@ import React, {useState, useContext} from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { LoginContext } from '../LoginContext';
 import './Login.css';
+import { API } from "../API";
+
+const postNewAdmin = async (data) => {
+	return await API.postNewAdmin(data);
+}
 
 function Signup() {
 
@@ -12,6 +17,11 @@ function Signup() {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
+  const [formData, setFormData] = useState({
+		name: '',
+		email: '',
+    password: '',
+	});
   // set up history for page navigation
   const navigate = useNavigate();
 
@@ -21,23 +31,35 @@ function Signup() {
 
   function handleEmailChange(event) {
     setEmail(event.target.value);
+    setFormData({
+			...formData,
+			email: event.target.value
+		});
   }
   function handleNameChange(event) {
     setName(event.target.value);
+    setFormData({
+			...formData,
+			name: event.target.value
+		});
   }
   function handlePasswordChange(event) {
     setPassword(event.target.value);
   }
   function handlePassword2Change(event) {
     setPassword2(event.target.value);
+    setFormData({
+			...formData,
+			password: event.target.value
+		});
   }
 
   // TODO: check email/password against backend
   function handleSubmit(event) {
     event.preventDefault();
-    const email = event.target.email.value;
-	const name = event.target.name.value;
-    const password = event.target.password.value;
+    // const email = event.target.email.value;
+	  // const name = event.target.name.value;
+    // const password = event.target.password.value;
 	// the form automatically verifies that the passwords match
 
     // TODO: check email not already associated with an account
@@ -50,8 +72,9 @@ function Signup() {
 	
 
 	// TODO: otherwise, create the account & add to database
-	window.alert("Account created!");
-	navigate("/");
+    postNewAdmin(formData);
+    window.alert("Account created!");
+    navigate("/");
   }
 
   // have to return nested divs to center it on the page
