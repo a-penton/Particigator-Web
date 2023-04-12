@@ -53,7 +53,7 @@ const UsersList = () => {
               {questions !== null ? 
                 questions.map((question) => {
                   return (
-                    <th>{question.id}</th>
+                    <th key={question.id}>{question.id}</th>
                   )
                 }) : null
               }
