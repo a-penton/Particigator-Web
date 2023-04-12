@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useContext } from 'react';
 import { LoginContext } from '../LoginContext';
 import "./NavBar.css"
@@ -7,11 +7,13 @@ import "./NavBar.css"
 
 function NavBar() {
 
-  const {setLoggedIn} = useContext(LoginContext);
+  const {loggedIn, setLoggedIn} = useContext(LoginContext);
+  const navigate = useNavigate();
 
   function logout() {
     setLoggedIn(false);
     localStorage.removeItem('loggedIn');
+    navigate("/login");
   }
 
   return (

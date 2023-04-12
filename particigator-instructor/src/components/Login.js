@@ -20,7 +20,8 @@ function Login() {
   const [actualPassword, setActualPassword] = useState("");
 
   useEffect(() => {
-    if (loggedIn) {
+    setLoggedIn(localStorage.getItem('loggedIn'));
+    if (localStorage.getItem('loggedIn')) {
       console.log('logged in, going to home')
       navigate("/");
     }
@@ -53,6 +54,7 @@ function Login() {
         // Redirect to new screen
         setLoggedIn(true);
         localStorage.setItem("loggedIn", true);
+        navigate("/");
       }
     })
     .catch(error => {
