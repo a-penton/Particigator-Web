@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { API } from "../API";
 import "./AssignmentsList.css"
 
@@ -10,6 +11,7 @@ const AssignmentsList = () => {
   const [assignments, setAssignments] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,6 +26,48 @@ const AssignmentsList = () => {
     };
     fetchData();
   }, []);
+
+  function edit(assignment) {
+    // TODO: For this to work, need to get answer data when fetching assignments
+    // TODO: alternative would be to get info by id in EditAssignment.js
+    const data = {
+      question:assignment.text,
+      questionID:assignment.id,
+      correctAnswer:assignment.correctAnswer,
+      incorrectAnswer1:assignment.incorrectAnswer1,
+      incorrectAnswer2:assignment.incorrectAnswer2,
+      incorrectAnswer3:assignment.incorrectAnswer3
+    };
+    navigate('/editAssignment', { state: data });
+  }
+
+  function copy(assignment) {
+    // confirm they want to duplicate the assignment
+    const confirmation = window.confirm('Duplicating assignment ' + assignment.id + '.');
+    if (!confirmation) {
+      return;
+    }
+
+    // TODO: duplicate the assignment in the backend
+
+    // navigate to this page so it reloads and it shows up
+    // TODO: check this works, otherwise will have to location.reload() to refresh
+    navigate('/assignments');
+  }
+
+  function erase(assignment) {
+    // confirm they want to delete the assignment
+    const confirmation = window.confirm('Deleting assignment ' + assignment.id + '.');
+    if (!confirmation) {
+      return;
+    }
+    
+    // TODO: remove the assignment from the database
+
+    // reload this page so changes are displayed
+    // TODO: check this works, may have to use location.reload() instead
+    navigate('/assignments');
+  }
   
   return (
     <div>
@@ -36,9 +80,9 @@ const AssignmentsList = () => {
               <div className="assignment" key={assignment.id}>
                 <div className="assignment_text">{assignment.text}</div>
                 <div className="assignment_buttons">
-                  <button className="action">copy</button>
-                  <button className="action">edit</button>
-                  <button className="action">delete</button>
+                  <button className="action" onClick={() => copy(assignment)}>copy</button>
+                  <button className="action" onClick={() => edit(assignment)}>edit</button>
+                  <button className="action" onClick={() => erase(assignment)}>delete</button>
                 </div>
               </div>
             )
