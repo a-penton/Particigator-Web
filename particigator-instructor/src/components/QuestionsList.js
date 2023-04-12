@@ -31,19 +31,24 @@ const QuestionsList = () => {
     {error ? <p>Error: {error.message}</p> : null}
     <div className="Tabling">
         <table>
-          <tr>
-            <th>ID</th>
-            <th>Question</th>
-          </tr>
-      {questions !== null ? 
-        questions.map((question) => {
-          return (
+          <thead>
             <tr>
-              <td>{question.id}</td>
-              <td>{question.text}</td>
+              <th>ID</th>
+              <th>Question</th>
             </tr>
-          )
-        }) : null}
+          </thead>
+          <tbody>
+            {questions !== null ? 
+              questions.map((question) => {
+                return (
+                  <tr key={question.id}>
+                    <td>{question.id}</td>
+                    <td>{question.text}</td>
+                  </tr>
+                )
+              }) : null
+            }
+        </tbody>
       </table>
     </div>
     </div>
