@@ -34,29 +34,22 @@ export function buildAdminControllers(databaseConnection) {
         let match = false;
 
         try {
-          console.log(req.body);
           const user = await db.Admin.findOne({ email });
-          console.log(user);
-          if (!user) {
-            return res.status(401).json({ message: 'Invalid email or password' });
+          if (user == null) {
+            return res.status(401).json({ message: 'Could not find user with that email. Please sign up.' });
           }
-          console.log(password)
-          console.log(user.password)
           //const match = await bcrypt.compare(password, user.password);
           match = password === user.password;
-          console.log(match);
           if (!match) {
             return res.status(401).json({ message: 'Invalid email or password' });
           }
       
-          // const token = 'whoops';//jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+          // const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
           // res.json({ token });
         } catch (error) {
-          console.log(error);
           res.status(500).json({ message: 'Server error' });
         }
-        console.log('Matched');
-        return res.status(200).json({ message: 'Correct!' });
+        return res.status(200).json({ message: 'Correct' });
       }
     }
   }

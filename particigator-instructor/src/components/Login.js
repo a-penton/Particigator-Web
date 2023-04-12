@@ -2,12 +2,8 @@ import React, {useState, useContext} from 'react';
 import { Navigate } from 'react-router-dom';
 import { LoginContext } from '../LoginContext';
 import './Login.css';
-import { API } from "../API";
 import axios from "axios";
 
-const checkAdminCredentials = async (data) => {
-	return await API.checkAdminCredentials(data);
-}
 
 function Login() {
 
@@ -49,37 +45,17 @@ function Login() {
     const response = await axios.post(`${api}/login`, {
       params: { email: email, password: password }}
     ).then(response => {
-      console.log(response);
-      console.log(response.status);
-      console.log('hello')
       if (response.status === 200) {
         // Redirect to new screen
         setLoggedIn(true);
-      } else {
-        // Handle login failure
-        alert('Invalid username or password');
+        localStorage.setItem("loggedIn", true);
       }
     })
     .catch(error => {
-      console.error(error);
+      alert(error.response.data.message);
     });
   };
   
-
-    // console.log(password)
-    // console.log(actualPassword)
-    // if(actualPassword === password){
-    //   setLoggedIn(true);
-    //   localStorage.setItem("loggedIn", true);
-    //   console.log(actualPassword);
-    // }
-    // else {
-    //   window.alert("Incorrect credentials. Please try again.");
-    // }
-
-
-  
-
   // have to return nested divs to center it on the page
   return (
     <div className="login-page">
