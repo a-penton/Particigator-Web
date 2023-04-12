@@ -25,7 +25,8 @@ function Signup() {
 	});
 
   useEffect(() => {
-    if (loggedIn) {
+    setLoggedIn(localStorage.getItem('loggedIn'));
+    if (!localStorage.getItem('loggedIn')) {
       navigate("/");
     }
   }, [])  
