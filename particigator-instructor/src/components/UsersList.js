@@ -5,14 +5,20 @@ import "./UsersList.css"
 const fetchUsers = async () => {
   return await API.getAllUsers();
 }
+const fetchQuestions = async () => {
+  return await API.getAllQuestions();
+}
 
 const UsersList = () => {
   const [users, setUsers] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [questions, setQuestions] = useState(null);
+
 
   useEffect(() => {
     const fetchData = async () => {
+      // get user data
       try {
         const data = await fetchUsers();
         setUsers(data);
@@ -21,6 +27,16 @@ const UsersList = () => {
         setError(error);
         setIsLoading(false);
       }
+      // get assignment data
+      try {
+        const data = await fetchQuestions();
+        setQuestions(data);
+        setIsLoading(false);
+      } catch (error) {
+        setError(error);
+        setIsLoading(false);
+      }
+      // TODO: get grades data
     };
     fetchData();
   }, []);
@@ -33,8 +49,14 @@ const UsersList = () => {
       <table>
         <thead>
           <tr>
-            <th>Name</th>
-            <th>ID</th>
+            <th><button>Download CSV</button></th>
+            {questions !== null ? 
+              questions.map((question) => {
+                return (
+                  <th>{question.id}</th>
+                )
+              }) : null
+            }
           </tr>
         </thead>
         <tbody>
@@ -43,7 +65,7 @@ const UsersList = () => {
               return (
                 <tr key={user.id}>
                   <td>{user.name}</td>
-                  <td>{user.id}</td>
+                  {/* TODO: add grades here */}
                 </tr>
               )
             }) : null
