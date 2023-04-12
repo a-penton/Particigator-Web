@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { API } from "../API";
-import "./UsersList.css"
+import "./QuestionsList.css"
 
 const fetchQuestions = async () => {
   return await API.getAllQuestions();
@@ -27,30 +27,24 @@ const QuestionsList = () => {
   
   return (
     <div>
-    {isLoading ? <p>Loading...</p> : null}
-    {error ? <p>Error: {error.message}</p> : null}
-    <div className="Tabling">
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Question</th>
-            </tr>
-          </thead>
-          <tbody>
-            {questions !== null ? 
-              questions.map((question) => {
-                return (
-                  <tr key={question.id}>
-                    <td>{question.id}</td>
-                    <td>{question.text}</td>
-                  </tr>
-                )
-              }) : null
-            }
-        </tbody>
-      </table>
-    </div>
+      {isLoading ? <p>Loading...</p> : null}
+      {error ? <p>Error: {error.message}</p> : null}
+      <div className="questions">
+        {questions !== null ? 
+          questions.map((question) => {
+            return (
+              <div className="question" key={question.id}>
+                <div className="question_text">{question.text}</div>
+                <div className="question_buttons">
+                  <button className="action">copy</button>
+                  <button className="action">edit</button>
+                  <button className="action">delete</button>
+                </div>
+              </div>
+            )
+          }) : null
+        }
+      </div>
     </div>
   );
   }
