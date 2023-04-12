@@ -40,16 +40,4 @@ export class API {
     return response.data;
   }
 
-  static async checkAdminCredentials(email) {
-    const response = await axios.get(`${api}/admin/${email}`)
-    // .then(response => {
-    //   console.log(response.data);
-    // })
-    // .catch(error => {
-    //   console.error(error);
-    // });
-    console.log(response.data);
-    return response.data.password;
-  }
-
 }

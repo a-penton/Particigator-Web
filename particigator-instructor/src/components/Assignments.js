@@ -22,7 +22,7 @@ function Assignments() {
 			<h1>Assignments Page</h1>
 			<QuestionsList/>
 			<br />
-			<button onClick={() => {navigate('/createAssignment')}}>Create an Assignment</button>
+			<button onClick={() => {navigate('/editAssignment')}}>Create an Assignment</button>
 		</div>
 	)
 }

@@ -2,11 +2,8 @@ import React, {useState, useContext, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LoginContext } from '../LoginContext';
 import './Login.css';
-import { API } from "../API";
+import axios from "axios";
 
-const checkAdminCredentials = async (data) => {
-	return await API.checkAdminCredentials(data);
-}
 
 function Login() {
 
@@ -23,7 +20,8 @@ function Login() {
   const [actualPassword, setActualPassword] = useState("");
 
   useEffect(() => {
-    if (loggedIn) {
+    setLoggedIn(localStorage.getItem('loggedIn'));
+    if (localStorage.getItem('loggedIn')) {
       console.log('logged in, going to home')
       navigate("/");
     }
@@ -49,38 +47,21 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     let api = 'http://localhost:3001'; 
-    const response = await fetch(`${api}/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, password }),
+    const response = await axios.post(`${api}/login`, {
+      params: { email: email, password: password }}
+    ).then(response => {
+      if (response.status === 200) {
+        // Redirect to new screen
+        setLoggedIn(true);
+        localStorage.setItem("loggedIn", true);
+        navigate("/");
+      }
+    })
+    .catch(error => {
+      alert(error.response.data.message);
     });
-    const data = await response.json();
-    if (data.success) {
-      // Redirect to new screen
-      setLoggedIn(true);
-    } else {
-      // Handle login failure
-      alert('Invalid username or password');
-    }
   };
   
-
-    // console.log(password)
-    // console.log(actualPassword)
-    // if(actualPassword === password){
-    //   setLoggedIn(true);
-    //   localStorage.setItem("loggedIn", true);
-    //   console.log(actualPassword);
-    // }
-    // else {
-    //   window.alert("Incorrect credentials. Please try again.");
-    // }
-
-
-  
-
   // have to return nested divs to center it on the page
   return (
     <div className="login-page">

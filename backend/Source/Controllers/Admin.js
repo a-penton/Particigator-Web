@@ -26,30 +26,30 @@ export function buildAdminControllers(databaseConnection) {
       },
       delete: async (req, res) => {
         const email = req.params.email;
-        await collection.deleteOne({ email });
+        await db.Admin.deleteOne({ email });
         return res.sendStatus(200);
       },
       login: async (req, res) => {
-        const { email, password } = req.body;
+        const { email, password } = req.body.params;
+        let match = false;
 
         try {
-          const user = await User.findOne({ email });
-          if (!user) {
-            return res.status(401).json({ message: 'Invalid email or password' });
+          const user = await db.Admin.findOne({ email });
+          if (user == null) {
+            return res.status(401).json({ message: 'Could not find user with that email. Please sign up.' });
           }
-      
-          const match = await bcrypt.compare(password, user.password);
+          //const match = await bcrypt.compare(password, user.password);
+          match = password === user.password;
           if (!match) {
             return res.status(401).json({ message: 'Invalid email or password' });
           }
       
-          const token = 'whoops';//jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-          res.json({ token });
+          // const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+          // res.json({ token });
         } catch (error) {
-          console.log(error);
           res.status(500).json({ message: 'Server error' });
         }
-        return res.sendStatus(201);
+        return res.status(200).json({ message: 'Correct' });
       }
     }
   }

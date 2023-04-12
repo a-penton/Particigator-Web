@@ -8,7 +8,7 @@ import Signup from './components/Signup';
 import Home from './components/Home';
 import Grades from './components/Grades';
 import Assignments from './components/Assignments';
-import AddAssignment from './components/AddAssignment';
+import EditAssignment from './components/EditAssignment';
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -30,7 +30,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/assignments" element={<Assignments />} />
             <Route path="/grades" element={<Grades />} />
-            <Route path="/createAssignment" element={<AddAssignment />} />
+            <Route path="/editAssignment" element={<EditAssignment />} />
           </Routes>
         </Router>
       </LoginContext.Provider>
