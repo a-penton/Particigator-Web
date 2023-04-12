@@ -43,38 +43,38 @@ const UsersList = () => {
   
   return (
     <div>
-    {isLoading ? <p>Loading...</p> : null}
-    {error ? <p>Error: {error.message}</p> : null}
-    <div className="Tabling">
-      <table>
-        <thead>
-          <tr>
-            <th><button>Download CSV</button></th>
-            {questions !== null ? 
-              questions.map((question) => {
+      {isLoading ? <p>Loading...</p> : null}
+      {error ? <p>Error: {error.message}</p> : null}
+      <div className="Tabling">
+        <table>
+          <thead>
+            <tr>
+              <th><button>Download CSV</button></th>
+              {questions !== null ? 
+                questions.map((question) => {
+                  return (
+                    <th>{question.id}</th>
+                  )
+                }) : null
+              }
+            </tr>
+          </thead>
+          <tbody>
+            {users !== null ? 
+              users.map((user) => {
                 return (
-                  <th>{question.id}</th>
+                  <tr key={user.id}>
+                    <td>{user.name}</td>
+                    {/* TODO: add grades here */}
+                  </tr>
                 )
               }) : null
             }
-          </tr>
-        </thead>
-        <tbody>
-          {users !== null ? 
-            users.map((user) => {
-              return (
-                <tr key={user.id}>
-                  <td>{user.name}</td>
-                  {/* TODO: add grades here */}
-                </tr>
-              )
-            }) : null
-          }
-        </tbody>
-      </table>
-    </div>
+          </tbody>
+        </table>
+      </div>
     </div>
   );
-  }
+}
     
-    export default UsersList;
+export default UsersList;
