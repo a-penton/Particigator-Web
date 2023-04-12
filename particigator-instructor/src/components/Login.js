@@ -3,6 +3,7 @@ import { Navigate } from 'react-router-dom';
 import { LoginContext } from '../LoginContext';
 import './Login.css';
 import { API } from "../API";
+import axios from "axios";
 
 const checkAdminCredentials = async (data) => {
 	return await API.checkAdminCredentials(data);
@@ -45,21 +46,23 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     let api = 'http://localhost:3001'; 
-    const response = await fetch(`${api}/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ email, password }),
+    const response = await axios.post(`${api}/login`, {
+      params: { email: email, password: password }}
+    ).then(response => {
+      console.log(response);
+      console.log(response.status);
+      console.log('hello')
+      if (response.status === 200) {
+        // Redirect to new screen
+        setLoggedIn(true);
+      } else {
+        // Handle login failure
+        alert('Invalid username or password');
+      }
+    })
+    .catch(error => {
+      console.error(error);
     });
-    const data = await response.json();
-    if (data.success) {
-      // Redirect to new screen
-      setLoggedIn(true);
-    } else {
-      // Handle login failure
-      alert('Invalid username or password');
-    }
   };
   
 
