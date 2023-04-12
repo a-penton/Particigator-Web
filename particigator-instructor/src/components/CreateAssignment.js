@@ -2,14 +2,14 @@ import { useNavigate } from 'react-router-dom';
 import { LoginContext } from '../LoginContext';
 import React, {useState, useContext, useEffect} from 'react';
 import NavBar from './NavBar';
-import QuestionsList from './QuestionsList';
+import AssignmentsList from './AssignmentsList';
 import { API } from "../API";
 
 const postNewQuestion = async (data) => {
 	return await API.postNewQuestion(data);
 }
 
-function EditAssignment() {
+function CreateAssignment() {
 
 	const navigate = useNavigate();
 	const {loggedIn} = useContext(LoginContext);
@@ -131,4 +131,4 @@ function EditAssignment() {
 	)
 }
 
-export default EditAssignment;
+export default CreateAssignment;

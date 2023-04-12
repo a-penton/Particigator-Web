@@ -9,7 +9,7 @@ const fetchQuestions = async () => {
   return await API.getAllQuestions();
 }
 
-const UsersList = () => {
+const GradeBook = () => {
   const [users, setUsers] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -77,4 +77,4 @@ const UsersList = () => {
   );
 }
     
-export default UsersList;
+export default GradeBook;

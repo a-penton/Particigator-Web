@@ -1,21 +1,21 @@
 import { useState, useEffect } from 'react';
 import { API } from "../API";
-import "./QuestionsList.css"
+import "./AssignmentsList.css"
 
-const fetchQuestions = async () => {
+const fetchAssignments = async () => {
   return await API.getAllQuestions();
 }
 
-const QuestionsList = () => {
-  const [questions, setQuestions] = useState(null);
+const AssignmentsList = () => {
+  const [assignments, setAssignments] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetchQuestions();
-        setQuestions(data);
+        const data = await fetchAssignments();
+        setAssignments(data);
         setIsLoading(false);
       } catch (error) {
         setError(error);
@@ -29,13 +29,13 @@ const QuestionsList = () => {
     <div>
       {isLoading ? <p>Loading...</p> : null}
       {error ? <p>Error: {error.message}</p> : null}
-      <div className="questions">
-        {questions !== null ? 
-          questions.map((question) => {
+      <div className="assignments">
+        {assignments !== null ? 
+          assignments.map((assignment) => {
             return (
-              <div className="question" key={question.id}>
-                <div className="question_text">{question.text}</div>
-                <div className="question_buttons">
+              <div className="assignment" key={assignment.id}>
+                <div className="assignment_text">{assignment.text}</div>
+                <div className="assignment_buttons">
                   <button className="action">copy</button>
                   <button className="action">edit</button>
                   <button className="action">delete</button>
@@ -47,6 +47,6 @@ const QuestionsList = () => {
       </div>
     </div>
   );
-  }
-    
-    export default QuestionsList;
+}
+
+export default AssignmentsList;
