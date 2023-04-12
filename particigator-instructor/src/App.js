@@ -30,7 +30,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/assignments" element={<Assignments />} />
             <Route path="/grades" element={<Grades />} />
-            <Route path="/createAssignment" element={<AddAssignment />} />
+            <Route path="/editAssignment" element={<AddAssignment />} />
           </Routes>
         </Router>
       </LoginContext.Provider>
