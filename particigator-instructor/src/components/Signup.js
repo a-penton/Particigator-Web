@@ -13,9 +13,9 @@ function Signup() {
   const {loggedIn, setLoggedIn} = useContext(LoginContext);
   // set up page navigation
   const navigate = useNavigate();
-  // set up states for email/password
-  const [email, setEmail] = useState("");
+  // set up states for form entries
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
   const [formData, setFormData] = useState({
@@ -28,18 +28,18 @@ function Signup() {
     navigate("/");
   }
 
-  function handleEmailChange(event) {
-    setEmail(event.target.value);
-    setFormData({
-			...formData,
-			email: event.target.value
-		});
-  }
   function handleNameChange(event) {
     setName(event.target.value);
     setFormData({
 			...formData,
 			name: event.target.value
+		});
+  } 
+  function handleEmailChange(event) {
+    setEmail(event.target.value);
+    setFormData({
+			...formData,
+			email: event.target.value
 		});
   }
   function handlePasswordChange(event) {
@@ -83,21 +83,21 @@ function Signup() {
         <h3>Welcome to Particigator!</h3>
         <h4>Create an account</h4>
         <form className="login-form" onSubmit={handleSubmit}>
-          <input 
-            type="text"
-            name="email"
-            value={email}
-            placeholder="Email"
-            onChange={handleEmailChange}
-			required
-          />
-          <br />
 		  <input 
             type="text"
             name="name"
             value={name}
             placeholder="Name"
             onChange={handleNameChange}
+			required
+          />
+          <br />
+          <input 
+            type="text"
+            name="email"
+            value={email}
+            placeholder="Email"
+            onChange={handleEmailChange}
 			required
           />
           <br />
