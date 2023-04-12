@@ -73,7 +73,7 @@ function Assignments() {
 	}
 
 	if (questionSubmitted) {
-		navigate('/assignements');
+		navigate('/assignments');
 	}
 
 	return (
