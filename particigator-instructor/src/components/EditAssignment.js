@@ -9,7 +9,7 @@ const postNewQuestion = async (data) => {
 	return await API.postNewQuestion(data);
 }
 
-function Assignments() {
+function EditAssignment() {
 
 	const navigate = useNavigate();
 	const {loggedIn} = useContext(LoginContext);
@@ -131,4 +131,4 @@ function Assignments() {
 	)
 }
 
-export default Assignments;
+export default EditAssignment;
