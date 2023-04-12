@@ -1,5 +1,5 @@
 import React, {useState, useContext} from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { LoginContext } from '../LoginContext';
 import './Login.css';
 import { API } from "../API";
@@ -11,7 +11,8 @@ const postNewAdmin = async (data) => {
 function Signup() {
 
   const {loggedIn, setLoggedIn} = useContext(LoginContext);
-
+  // set up page navigation
+  const navigate = useNavigate();
   // set up states for email/password
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -22,11 +23,9 @@ function Signup() {
 		email: '',
     password: '',
 	});
-  // set up history for page navigation
-  const navigate = useNavigate();
 
   if (loggedIn) {
-    return <Navigate to="/" />
+    navigate("/");
   }
 
   function handleEmailChange(event) {
