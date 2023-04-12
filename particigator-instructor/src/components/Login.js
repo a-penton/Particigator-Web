@@ -32,6 +32,7 @@ function Login() {
 			email: event.target.value
 		});
   }
+
   function handlePasswordChange(event) {
     setPassword(event.target.value);
     setFormData({
@@ -41,40 +42,40 @@ function Login() {
   }
 
   // TODO: check email/password against backend
-  function handleSubmit(event) {
-    event.preventDefault();
-    // const email = event.target.email.value;
-    // const password = event.target.password.value;
-    // placeholder check
-    // if (password === "Aman") {
-    //   // navigate to home page
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    let api = 'http://localhost:3001'; 
+    const response = await fetch(`${api}/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    });
+    const data = await response.json();
+    if (data.success) {
+      // Redirect to new screen
+      setLoggedIn(true);
+    } else {
+      // Handle login failure
+      alert('Invalid username or password');
+    }
+  };
+  
+
+    // console.log(password)
+    // console.log(actualPassword)
+    // if(actualPassword === password){
     //   setLoggedIn(true);
     //   localStorage.setItem("loggedIn", true);
+    //   console.log(actualPassword);
     // }
     // else {
-    //   // TODO: incorrect login message
+    //   window.alert("Incorrect credentials. Please try again.");
     // }
-    const retrieveData = async () => {
-      try {
-        const data = await checkAdminCredentials(formData.email);
-        setActualPassword(data);
-      } catch (error) {
-        window.alert("Email not found. Please try again.");
-      }
-    };
-    retrieveData();
 
-    console.log(password)
-    console.log(actualPassword)
-    if(actualPassword === password){
-      setLoggedIn(true);
-      localStorage.setItem("loggedIn", true);
-      console.log(actualPassword);
-    }
-    else {
-      window.alert("Incorrect credentials. Please try again.");
-    }
-  }
+
+  
 
   // have to return nested divs to center it on the page
   return (

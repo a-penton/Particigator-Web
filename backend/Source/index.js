@@ -33,6 +33,7 @@ async function main() {
   app.get('/admin', adminControllers.getAll);
   app.get('/admin/:email', adminControllers.getByEmail);
   app.post('/admin', adminControllers.create);
+  app.post('/login', adminControllers.login);
   app.put('/admin/:email', adminControllers.update);
   app.delete('/admin/:email', adminControllers.delete);
   

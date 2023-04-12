@@ -1,3 +1,6 @@
+import bcrypt from 'bcrypt';
+//import jwt from 'jwt';
+
 export function buildAdminControllers(databaseConnection) {
     const db = databaseConnection;
     
@@ -25,6 +28,28 @@ export function buildAdminControllers(databaseConnection) {
         const email = req.params.email;
         await collection.deleteOne({ email });
         return res.sendStatus(200);
+      },
+      login: async (req, res) => {
+        const { email, password } = req.body;
+
+        try {
+          const user = await User.findOne({ email });
+          if (!user) {
+            return res.status(401).json({ message: 'Invalid email or password' });
+          }
+      
+          const match = await bcrypt.compare(password, user.password);
+          if (!match) {
+            return res.status(401).json({ message: 'Invalid email or password' });
+          }
+      
+          const token = 'whoops';//jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+          res.json({ token });
+        } catch (error) {
+          console.log(error);
+          res.status(500).json({ message: 'Server error' });
+        }
+        return res.sendStatus(201);
       }
     }
   }
