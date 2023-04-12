@@ -31,29 +31,34 @@ const AdminList = () => {
     {error ? <p>Error: {error.message}</p> : null}
     <div className="Tabling">
         <table>
+          <thead>
           <tr>
             <th>Name</th>
             <th>Email</th>
             {/* <th>Students</th> */}
-          </tr>
-      {admin !== null ? 
-        admin.map((adminer) => {
-          return (
-            <tr>
-              <td>{adminer.name}</td>
-              <td>{adminer.email}</td>
-              {/* <td>{adminer.students.map((student) => {
-                return (
-                    <div>
-                        <p>{student}</p>
-                    </div>
-                )
-              })}</td> */}
             </tr>
-          )
-        }) : null}
-      </table>
-    </div>
+          </thead>
+          <tbody>
+          {admin !== null ? 
+            admin.map((adminer) => {
+              return (
+                <tr key={adminer.email}>
+                  <td>{adminer.name}</td>
+                  <td>{adminer.email}</td>
+                  {/* <td>{adminer.students.map((student) => {
+                    return (
+                        <div>
+                            <p>{student}</p>
+                        </div>
+                    )
+                  })}</td> */}
+                </tr>
+              )
+            }) : null
+          }
+          </tbody>
+        </table>
+      </div>
     </div>
   );
   }

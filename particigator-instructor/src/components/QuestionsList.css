@@ -1,0 +1,40 @@
+.questions {
+	border: solid 3px blue;
+	margin: 0 20vmax;
+}
+
+.question {
+	text-align: left;
+	padding: 5px;
+	margin: 10px auto;
+	border: solid 1px black;
+	width: 90%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.action {
+	margin: 2px;
+}
+
+.Tabling {
+	width: 100%;
+	top: 10%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+table {
+	border: 2px solid forestgreen;
+	width: 800px;
+height: 200px;
+}
+
+th {
+	border-bottom: 1px solid black;
+}
+
+td {
+	text-align: center;
+}

@@ -30,20 +30,25 @@ const UsersList = () => {
     {isLoading ? <p>Loading...</p> : null}
     {error ? <p>Error: {error.message}</p> : null}
     <div className="Tabling">
-        <table>
+      <table>
+        <thead>
           <tr>
             <th>Name</th>
             <th>ID</th>
           </tr>
-      {users !== null ? 
-        users.map((user) => {
-          return (
-            <tr>
-              <td>{user.name}</td>
-              <td>{user.id}</td>
-            </tr>
-          )
-        }) : null}
+        </thead>
+        <tbody>
+          {users !== null ? 
+            users.map((user) => {
+              return (
+                <tr key={user.id}>
+                  <td>{user.name}</td>
+                  <td>{user.id}</td>
+                </tr>
+              )
+            }) : null
+          }
+        </tbody>
       </table>
     </div>
     </div>

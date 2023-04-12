@@ -1,16 +1,20 @@
-import { Navigate } from 'react-router-dom';
-import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useContext, useEffect } from 'react';
 import { LoginContext } from '../LoginContext';
 import NavBar from './NavBar';
 import UsersList from './UsersList';
 
 function Grades() {
 
-	const {loggedIn} = useContext(LoginContext);
+	const {loggedIn, setLoggedIn} = useContext(LoginContext);
+	const navigate = useNavigate();
 
-	if (!loggedIn) {
-		return <Navigate to="/login" />
-	}
+	useEffect(() => {
+		setLoggedIn(localStorage.getItem('loggedIn'));
+		if (!localStorage.getItem('loggedIn')) {
+			navigate("/login");
+		}
+	}, [])
 
 	return (
 		<div>
