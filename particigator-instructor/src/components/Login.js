@@ -1,5 +1,5 @@
-import React, {useState, useContext} from 'react';
-import { Navigate } from 'react-router-dom';
+import React, {useState, useContext, useEffect} from 'react';
+import { useNavigate } from 'react-router-dom';
 import { LoginContext } from '../LoginContext';
 import './Login.css';
 import { API } from "../API";
@@ -11,6 +11,7 @@ const checkAdminCredentials = async (data) => {
 function Login() {
 
   const {loggedIn, setLoggedIn} = useContext(LoginContext);
+  const navigate = useNavigate();
 
   // set up states for email/password
   const [email, setEmail] = useState("");
@@ -21,9 +22,12 @@ function Login() {
 	});
   const [actualPassword, setActualPassword] = useState("");
 
-  if (loggedIn) {
-    return <Navigate to="/" />
-  }
+  useEffect(() => {
+    if (loggedIn) {
+      console.log('logged in, going to home')
+      navigate("/");
+    }
+  }, [])
 
   function handleEmailChange(event) {
     setEmail(event.target.value);

@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { LoginContext } from '../LoginContext';
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import NavBar from './NavBar';
 import QuestionsList from './QuestionsList';
 import { API } from "../API";
@@ -26,7 +26,15 @@ function Assignments() {
 	});
 
 	const [questionSubmitted, setQuestionSubmitted] = useState(false)
-	
+
+	useEffect(() => {
+		if (!localStorage.getItem('loggedIn')) {
+			navigate('/login');
+		}
+		if (questionSubmitted) {
+			navigate('/assignments');
+		}
+	});
 
 	function submitAssignment(event) {
 		event.preventDefault();
@@ -42,7 +50,6 @@ function Assignments() {
 			text: event.target.value
 		});
 	}
-
 	function handleQuestionIDChange(event) {
 		setQuestionID(event.target.value);
 		setFormData({
@@ -51,29 +58,17 @@ function Assignments() {
 		});
 		
 	}
-
 	function handleCorrectAnswerChange(event) {
 		setCorrectAnswer(event.target.value);
 	}
-
 	function handleIncorrectAnswer1Change(event) {
 		setIncorrectAnswer1(event.target.value);
 	}
-
 	function handleIncorrectAnswer2Change(event) {
 		setIncorrectAnswer2(event.target.value);
 	}
-
 	function handleIncorrectAnswer3Change(event) {
 		setIncorrectAnswer3(event.target.value);
-	}
-
-	if (!loggedIn) {
-		navigate('/login');
-	}
-
-	if (questionSubmitted) {
-		navigate('/assignments');
 	}
 
 	return (

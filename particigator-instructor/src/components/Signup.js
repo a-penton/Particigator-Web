@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LoginContext } from '../LoginContext';
 import './Login.css';
@@ -24,9 +24,11 @@ function Signup() {
     password: '',
 	});
 
-  if (loggedIn) {
-    navigate("/");
-  }
+  useEffect(() => {
+    if (loggedIn) {
+      navigate("/");
+    }
+  }, [])  
 
   function handleNameChange(event) {
     setName(event.target.value);
