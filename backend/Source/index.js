@@ -31,10 +31,11 @@ async function main() {
   app.delete('/questions/:id', questionsControllers.delete);
 
   app.get('/admin', adminControllers.getAll);
-  app.get('/admin/:id', adminControllers.getById);
+  app.get('/admin/:email', adminControllers.getByEmail);
   app.post('/admin', adminControllers.create);
-  app.put('/admin/:id', adminControllers.update);
-  app.delete('/admin/:id', adminControllers.delete);
+  app.post('/login', adminControllers.login);
+  app.put('/admin/:email', adminControllers.update);
+  app.delete('/admin/:email', adminControllers.delete);
   
   app.listen(3001, () => {
     console.log('Server started on port 3001');

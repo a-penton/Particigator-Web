@@ -2,6 +2,8 @@ import React, {useState, useContext} from 'react';
 import { Navigate } from 'react-router-dom';
 import { LoginContext } from '../LoginContext';
 import './Login.css';
+import axios from "axios";
+
 
 function Login() {
 
@@ -10,6 +12,11 @@ function Login() {
   // set up states for email/password
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [formData, setFormData] = useState({
+		email: '',
+    password: '',
+	});
+  const [actualPassword, setActualPassword] = useState("");
 
   if (loggedIn) {
     return <Navigate to="/" />
@@ -17,27 +24,38 @@ function Login() {
 
   function handleEmailChange(event) {
     setEmail(event.target.value);
+    setFormData({
+			...formData,
+			email: event.target.value
+		});
   }
+
   function handlePasswordChange(event) {
     setPassword(event.target.value);
+    setFormData({
+			...formData,
+			password: event.target.value
+		});
   }
 
   // TODO: check email/password against backend
-  function handleSubmit(event) {
-    event.preventDefault();
-    const email = event.target.email.value;
-    const password = event.target.password.value;
-    // placeholder check
-    if (password === "Aman") {
-      // navigate to home page
-      setLoggedIn(true);
-      localStorage.setItem("loggedIn", true);
-    }
-    else {
-      // TODO: incorrect login message
-    }
-  }
-
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    let api = 'http://localhost:3001'; 
+    const response = await axios.post(`${api}/login`, {
+      params: { email: email, password: password }}
+    ).then(response => {
+      if (response.status === 200) {
+        // Redirect to new screen
+        setLoggedIn(true);
+        localStorage.setItem("loggedIn", true);
+      }
+    })
+    .catch(error => {
+      alert(error.response.data.message);
+    });
+  };
+  
   // have to return nested divs to center it on the page
   return (
     <div className="login-page">

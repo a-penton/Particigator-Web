@@ -33,22 +33,22 @@ const AdminList = () => {
         <table>
           <tr>
             <th>Name</th>
-            <th>ID</th>
-            <th>Students</th>
+            <th>Email</th>
+            {/* <th>Students</th> */}
           </tr>
       {admin !== null ? 
         admin.map((adminer) => {
           return (
             <tr>
-              <td>{adminer.username}</td>
-              <td>{adminer.id}</td>
-              <td>{adminer.students.map((student) => {
+              <td>{adminer.name}</td>
+              <td>{adminer.email}</td>
+              {/* <td>{adminer.students.map((student) => {
                 return (
                     <div>
                         <p>{student}</p>
                     </div>
                 )
-              })}</td>
+              })}</td> */}
             </tr>
           )
         }) : null}

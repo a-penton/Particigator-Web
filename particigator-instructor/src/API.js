@@ -29,4 +29,15 @@ export class API {
     return response.data;
   }
 
+  static async postNewAdmin(data) {
+    const response = await axios.post(`${api}/admin`, data)
+    .then(response => {
+      console.log(response.data);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+    return response.data;
+  }
+
 }
