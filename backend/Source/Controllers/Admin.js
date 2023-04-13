@@ -20,11 +20,15 @@ export function buildAdminControllers(databaseConnection) {
       create: async (req, res) => {
         console.log(req.body.data.email);
         const email = req.body.data.email;
+        const name = req.body.data.name;
+        const pass = await bcrypt.hash(req.body.data.password, 10);
+        const reqMod = {email: email, password: pass, name: name};
+  
         const user = await db.Admin.findOne({ email });
         if (user == null) {
           console.log("User cleared");
           //console.log(req.body.data);
-          await db.Admin.insertOne(req.body.data);
+          await db.Admin.insertOne(reqMod);
           return res.sendStatus(201);
         }
         return res.status(401).json({ message: 'An existing user already has that email. Please use a different email or sign in.' });
@@ -46,10 +50,9 @@ export function buildAdminControllers(databaseConnection) {
           if (user == null) {
             return res.status(401).json({ message: 'Could not find user with that email. Please sign up.' });
           }
-          //const match = await bcrypt.compare(password, user.password);
-          match = password === user.password;
+          const match = await bcrypt.compare(password, user.password);
           if (!match) {
-            return res.status(401).json({ message: 'Invalid email or password' });
+            return res.status(401).json({ message: 'Invalid credentials. Please try entering your password again.' });
           }
       
           // const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
