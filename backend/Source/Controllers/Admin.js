@@ -18,8 +18,16 @@ export function buildAdminControllers(databaseConnection) {
         return res.send(documents);
       },
       create: async (req, res) => {
-        await db.Admin.insertOne(req.body);
-        return res.sendStatus(201);
+        console.log(req.body.data.email);
+        const email = req.body.data.email;
+        const user = await db.Admin.findOne({ email });
+        if (user == null) {
+          console.log("User cleared");
+          //console.log(req.body.data);
+          await db.Admin.insertOne(req.body.data);
+          return res.sendStatus(201);
+        }
+        return res.status(401).json({ message: 'An existing user already has that email. Please use a different email or sign in.' });
       },
       update: async (req, res) => {
         return res.sendStatus(501)

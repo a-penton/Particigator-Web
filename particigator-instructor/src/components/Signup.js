@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { LoginContext } from '../LoginContext';
 import './Login.css';
 import { API } from "../API";
+import axios from "axios";
 
 const postNewAdmin = async (data) => {
 	return await API.postNewAdmin(data);
@@ -57,7 +58,7 @@ function Signup() {
   }
 
   // TODO: check email/password against backend
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     // const email = event.target.email.value;
 	  // const name = event.target.name.value;
@@ -74,9 +75,29 @@ function Signup() {
 	
 
 	// TODO: otherwise, create the account & add to database
-    postNewAdmin(formData);
-    window.alert("Account created!");
-    navigate("/");
+    const data = {email: formData.email, password: formData.password, name: formData.name};
+    // //console.log(data.body);
+    // try {
+    //   const res = postNewAdmin(data);
+    //   window.alert("Account created!");
+    //   navigate("/");
+    // }
+    // catch(error){
+    //   window.alert("oops");
+    // }
+    let api = 'http://localhost:3001'; 
+    const response = await axios.post(`${api}/admin`, {
+      data}
+    ).then(response => {
+      if (response.status === 201) {
+        // Redirect to new screen
+        window.alert("Account created!");
+        navigate("/");
+      }
+    })
+    .catch(error => {
+      alert(error.response.data.message);
+    });
   }
 
   // have to return nested divs to center it on the page

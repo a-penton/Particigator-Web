@@ -30,14 +30,19 @@ export class API {
   }
 
   static async postNewAdmin(data) {
+    console.log(data.email);
     const response = await axios.post(`${api}/admin`, data)
     .then(response => {
-      console.log(response.data);
+      if(response.status == 200){
+        console.log('Working ' + response);
+        return true;
+      }
+      
     })
     .catch(error => {
-      console.error(error);
+      console.error('Error ' + error);
+      return false;
     });
-    return response.data;
   }
 
 }
