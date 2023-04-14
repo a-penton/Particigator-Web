@@ -22,7 +22,6 @@ function Login() {
   useEffect(() => {
     setLoggedIn(localStorage.getItem('loggedIn'));
     if (localStorage.getItem('loggedIn')) {
-      console.log('logged in, going to home')
       navigate("/");
     }
   }, [])
