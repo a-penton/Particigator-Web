@@ -65,10 +65,10 @@ function EditStudents() {
 		<div>
 			<NavBar />
 			<h1>Student Information</h1>
-			<form onSubmit={handleSubmit}>
+			<form className="student-file-form" onSubmit={handleSubmit}>
 				<label>
 					Upload Data
-					<input type="file" onChange={handleFileUpload}></input>
+					<input className="student-file-input" type="file" onChange={handleFileUpload}></input>
 				</label>
 				<button type="submit">Upload csv</button>
 			</form>
@@ -77,7 +77,7 @@ function EditStudents() {
 			<br />
 			<h3>Current Data</h3>
 			{data !== null ? 
-			<table>
+			<table className="student-data-table">
 				<thead>
 					<tr>
 						<th>Student</th>

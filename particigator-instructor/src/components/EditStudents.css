@@ -1,12 +1,12 @@
-table {
+.student-data-table {
 	margin: auto;
 }
 
-input {
+.student-file-input {
 	margin: 30px;
 }
 
-form {
+.student-file-form {
 	border: solid 2px black;
 	width: fit-content;
 	margin: auto;
