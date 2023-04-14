@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useContext, useEffect } from 'react';
 import { LoginContext } from '../LoginContext';
 import NavBar from './NavBar';
-import UsersList from './UsersList';
+import GradeBook from './GradeBook';
 
 function Grades() {
 
@@ -20,7 +20,7 @@ function Grades() {
 		<div>
 			<NavBar />
 			<h1>Grades Page</h1>
-			<UsersList />
+			<GradeBook />
 		</div>
 	)
 }

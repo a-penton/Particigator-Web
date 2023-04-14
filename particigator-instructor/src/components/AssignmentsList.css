@@ -1,9 +1,9 @@
-.questions {
+.assignments {
 	border: solid 3px blue;
 	margin: 0 20vmax;
 }
 
-.question {
+.assignment {
 	text-align: left;
 	padding: 5px;
 	margin: 10px auto;
@@ -28,7 +28,7 @@
 table {
 	border: 2px solid forestgreen;
 	width: 800px;
-height: 200px;
+	height: 200px;
 }
 
 th {

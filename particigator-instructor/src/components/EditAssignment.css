@@ -1,0 +1,21 @@
+.login-form {
+	width: 50%;
+	margin: auto;
+}
+
+.form-group {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 16px;
+}
+
+label {
+	flex: 0 0 150px;
+	text-align: left;
+}
+
+input {
+	flex: 1 1 auto;
+	text-align: center;
+}

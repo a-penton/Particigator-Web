@@ -28,6 +28,7 @@ function Home() {
 			<div className="buttons">
 				<button onClick={() => {navigate('/assignments')}}>Assignments</button>
 				<button onClick={() => {navigate('/grades')}}>Grades</button>
+				<button onClick={() => {navigate('/editStudents')}}>Edit Students</button>
 			</div>
 			<br />
 			<AdminList/>
