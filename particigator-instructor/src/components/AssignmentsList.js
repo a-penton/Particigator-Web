@@ -30,15 +30,7 @@ const AssignmentsList = () => {
   function edit(assignment) {
     // TODO: For this to work, need to get answer data when fetching assignments
     // TODO: alternative would be to get info by id in EditAssignment.js
-    const data = {
-      question:assignment.text,
-      questionID:assignment.id,
-      correctAnswer:assignment.correctAnswer,
-      incorrectAnswer1:assignment.incorrectAnswer1,
-      incorrectAnswer2:assignment.incorrectAnswer2,
-      incorrectAnswer3:assignment.incorrectAnswer3
-    };
-    navigate('/editAssignment', { state: data });
+    navigate('/editAssignment', { state: assignment });
   }
 
   function copy(assignment) {
@@ -77,8 +69,8 @@ const AssignmentsList = () => {
         {assignments !== null ? 
           assignments.map((assignment) => {
             return (
-              <div className="assignment" key={assignment.id}>
-                <div className="assignment_text">{assignment.text}</div>
+              <div className="assignment" key={assignment.questionTitle}>
+                <div className="assignment_title">{assignment.questionTitle}</div>
                 <div className="assignment_buttons">
                   <button className="action" onClick={() => copy(assignment)}>copy</button>
                   <button className="action" onClick={() => edit(assignment)}>edit</button>

@@ -17,15 +17,15 @@ function EditAssignment() {
 	const navigate = useNavigate();
 	const {loggedIn} = useContext(LoginContext);
 
+	const [title, setQuestionTitle] = useState(state.questionTitle);
 	const [question, setQuestion] = useState(state.question);
-  	const [id, setQuestionID] = useState(state.questionID);
-	const [correctAnswer, setCorrectAnswer] = useState(state.correctAnswer);
-	const [incorrectAnswer1, setIncorrectAnswer1] = useState(state.incorrectAnswer1);
-	const [incorrectAnswer2, setIncorrectAnswer2] = useState(state.incorrectAnswer2);
-	const [incorrectAnswer3, setIncorrectAnswer3] = useState(state.incorrectAnswer3);
+	const [correctAnswer, setCorrectAnswer] = useState(state.options[0].answer);
+	const [incorrectAnswer1, setIncorrectAnswer1] = useState(state.options[1].answer);
+	const [incorrectAnswer2, setIncorrectAnswer2] = useState(state.options[2].answer);
+	const [incorrectAnswer3, setIncorrectAnswer3] = useState(state.options[3].answer);
 	const [formData, setFormData] = useState({
 		text: '',
-		id: '',
+		title: '',
 	});
 
 	const [questionSubmitted, setQuestionSubmitted] = useState(false)
@@ -42,24 +42,25 @@ function EditAssignment() {
 	function submitAssignment(event) {
 		event.preventDefault();
 
+		// TODO: Modify this to only edit the assignment
 		postNewQuestion(formData);
 		setQuestionSubmitted(true);
 	}
 
+	function handleQuestionTitleChange(event) {
+		setQuestionTitle(event.target.value);
+		setFormData({
+			...formData,
+			title: event.target.value
+		});
+		
+	}
 	function handleQuestionChange(event) {
 		setQuestion(event.target.value);
 		setFormData({
 			...formData,
 			text: event.target.value
 		});
-	}
-	function handleQuestionIDChange(event) {
-		setQuestionID(event.target.value);
-		setFormData({
-			...formData,
-			id: event.target.value
-		});
-		
 	}
 	function handleCorrectAnswerChange(event) {
 		setCorrectAnswer(event.target.value);
@@ -81,6 +82,16 @@ function EditAssignment() {
 			<br />
 			<form className="login-form" onSubmit={submitAssignment}>
 				<div className="form-group">
+					<label htmlFor="Title">Assignment Title: </label>
+					<input 
+						type="text"
+						name="Title"
+						value={title}
+						placeholder="Enter assignment title here!"
+						onChange={handleQuestionTitleChange}
+					/>
+				</div>
+				<div className="form-group">
 					<label htmlFor="Question">Question: </label>
 					<input 
 						type="text"
@@ -88,16 +99,6 @@ function EditAssignment() {
 						value={question}
 						placeholder="Enter question here!"
 						onChange={handleQuestionChange}
-					/>
-				</div>
-				<div className="form-group">
-					<label htmlFor="ID">Question ID: </label>
-					<input 
-						type="text"
-						name="ID"
-						value={id}
-						placeholder="Enter question ID here!"
-						onChange={handleQuestionIDChange}
 					/>
 				</div>
 				<div className="form-group">
