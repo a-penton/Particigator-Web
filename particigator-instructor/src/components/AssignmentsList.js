@@ -35,7 +35,7 @@ const AssignmentsList = () => {
 
   function copy(assignment) {
     // confirm they want to duplicate the assignment
-    const confirmation = window.confirm('Duplicating assignment ' + assignment.id + '.');
+    const confirmation = window.confirm('Duplicating assignment ' + assignment.questionTitle + '.');
     if (!confirmation) {
       return;
     }
@@ -49,7 +49,7 @@ const AssignmentsList = () => {
 
   function erase(assignment) {
     // confirm they want to delete the assignment
-    const confirmation = window.confirm('Deleting assignment ' + assignment.id + '.');
+    const confirmation = window.confirm('Deleting assignment ' + assignment.questionTitle + '.');
     if (!confirmation) {
       return;
     }
