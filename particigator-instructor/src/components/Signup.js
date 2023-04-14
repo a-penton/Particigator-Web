@@ -60,31 +60,8 @@ function Signup() {
   // TODO: check email/password against backend
   async function handleSubmit(event) {
     event.preventDefault();
-    // const email = event.target.email.value;
-	  // const name = event.target.name.value;
-    // const password = event.target.password.value;
-	// the form automatically verifies that the passwords match
-
-    // TODO: check email not already associated with an account
-	// if it is, we'll do something like this:
-	// window.alert("Error: This email is already associated with an account.");
-	// setEmail("");
-	// setName("");
-	// setPassword("");
-	// setPassword2("");
-	
-
-	// TODO: otherwise, create the account & add to database
     const data = {email: formData.email, password: formData.password, name: formData.name};
-    // //console.log(data.body);
-    // try {
-    //   const res = postNewAdmin(data);
-    //   window.alert("Account created!");
-    //   navigate("/");
-    // }
-    // catch(error){
-    //   window.alert("oops");
-    // }
+  
     let api = 'http://localhost:3001'; 
     const response = await axios.post(`${api}/admin`, {
       data}
