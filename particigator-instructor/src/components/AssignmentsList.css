@@ -1,5 +1,5 @@
 .assignments {
-	border: solid 3px blue;
+	border: solid 2px forestgreen;
 	margin: 0 20vmax;
 }
 
@@ -23,18 +23,4 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-}
-
-table {
-	border: 2px solid forestgreen;
-	width: 800px;
-	height: 200px;
-}
-
-th {
-	border-bottom: 1px solid black;
-}
-
-td {
-	text-align: center;
 }
