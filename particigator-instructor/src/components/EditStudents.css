@@ -1,0 +1,14 @@
+table {
+	margin: auto;
+}
+
+input {
+	margin: 30px;
+}
+
+form {
+	border: solid 2px black;
+	width: fit-content;
+	margin: auto;
+	padding: 10px;
+}
