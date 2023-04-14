@@ -53,7 +53,7 @@ const GradeBook = () => {
               {questions !== null ? 
                 questions.map((question) => {
                   return (
-                    <th key={question.id}>{question.id}</th>
+                    <th key={question.questionTitle}>{question.questionTitle}</th>
                   )
                 }) : null
               }
