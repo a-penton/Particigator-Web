@@ -63,13 +63,13 @@ const AssignmentsList = () => {
 
   function activate(title) {
     if (title == "") {
-      if (window.confirm("Deactivating assignment.")) {
+      if (window.confirm("Deactivating " + active)) {
         // TODO: Deactivate current active assignment in the backend
         setActive(title);
       }
     }
     else {
-      if (window.confirm("Activating " + title)) {
+      if (window.confirm(active == "" ? "Activating " + title : "Deactivating " + active + " and activating " + title)) {
         // TODO: Activate this assignment in the backend
         setActive(title);
       }
