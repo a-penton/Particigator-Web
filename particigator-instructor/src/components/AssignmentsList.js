@@ -9,11 +9,13 @@ const fetchAssignments = async () => {
 
 const AssignmentsList = () => {
   const [assignments, setAssignments] = useState(null);
+  const [active, setActive] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
+    // TODO: Get current active assignment, or ""
     const fetchData = async () => {
       try {
         const data = await fetchAssignments();
@@ -28,8 +30,6 @@ const AssignmentsList = () => {
   }, []);
 
   function edit(assignment) {
-    // TODO: For this to work, need to get answer data when fetching assignments
-    // TODO: alternative would be to get info by id in EditAssignment.js
     navigate('/editAssignment', { state: assignment });
   }
 
@@ -60,6 +60,21 @@ const AssignmentsList = () => {
     // TODO: check this works, may have to use location.reload() instead
     navigate('/assignments');
   }
+
+  function activate(title) {
+    if (title == "") {
+      if (window.confirm("Deactivating assignment.")) {
+        // TODO: Deactivate current active assignment in the backend
+        setActive(title);
+      }
+    }
+    else {
+      if (window.confirm("Activating " + title)) {
+        // TODO: Activate this assignment in the backend
+        setActive(title);
+      }
+    }
+  }
   
   return (
     <div>
@@ -69,9 +84,14 @@ const AssignmentsList = () => {
         {assignments !== null ? 
           assignments.map((assignment) => {
             return (
-              <div className="assignment" key={assignment.questionTitle}>
+              <div className={assignment.questionTitle == active ? "active assignment" : "assignment"} key={assignment.questionTitle}>
                 <div className="assignment_title">{assignment.questionTitle}</div>
                 <div className="assignment_buttons">
+                  {
+                    assignment.questionTitle == active ?
+                    <button onClick={() => activate("")}>Deactivate</button> :
+                    <button onClick={() => activate(assignment.questionTitle)}>Activate</button>
+                  }
                   <button className="action" onClick={() => copy(assignment)}>copy</button>
                   <button className="action" onClick={() => edit(assignment)}>edit</button>
                   <button className="action" onClick={() => erase(assignment)}>delete</button>
