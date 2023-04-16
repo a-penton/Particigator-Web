@@ -127,7 +127,7 @@ function EditStudents() {
 			alert('No data to download!');
 			return;
 		}
-		const csvData = data.join('\n');
+		const csvData = data.map(obj => obj.id).join('\n');
 		const blob = new Blob([csvData], { type: "text/csv" });
 		const url = URL.createObjectURL(blob);
 		const link = document.createElement("a");
@@ -143,14 +143,15 @@ function EditStudents() {
 			<NavBar />
 			<h1>Student Information</h1>
 			<form className="student-file-form" onSubmit={handleSubmit}>
-				<label>
-					Upload Data
-					<input className="student-file-input" type="file" onChange={handleFileUpload}></input>
+				<label className="file-upload">
+					Choose file...
+					<input className="student-file-input" type="file" onChange={handleFileUpload} />
 				</label>
-				<button type="submit">Upload csv</button>
+				<br />
+				<button className="btn" type="submit">Upload csv</button>
 			</form>
 			<br />
-			<button onClick={download}>Download data</button>
+			<button className="btn" onClick={download}>Download students</button>
 			<br />
 			<h3>Current Data</h3>
 			{data !== null ? 

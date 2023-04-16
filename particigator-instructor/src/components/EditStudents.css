@@ -12,3 +12,27 @@
 	margin: auto;
 	padding: 10px;
 }
+
+/* input[type="file"] {
+	display: none;
+}
+
+.file-upload {
+	border: 1px solid #ccc;
+	display: inline-block;
+	padding: 6px 12px;
+	border-radius: 6px;
+	cursor: pointer;
+	background-color: #ff9248;
+	color: white;
+} */
+
+.btn {
+	background-color: #ff9248;
+	cursor: pointer;
+	border: none;
+	border-radius: 5px;
+	padding: 10px;
+	color: white;
+	font-size: 15px;
+  }
