@@ -1,11 +1,16 @@
 .header {
   width: 100%;
   height: 10%;
-  background: #ff9248;
-  font-family: "Times New Roman", Times, serif;
+  background: #466aff;
+  font-family: sans-serif;
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.header h3 {
+  color: white;
+  font-weight: bold;
 }
   
 h3 {
