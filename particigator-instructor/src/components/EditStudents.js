@@ -14,7 +14,7 @@ function EditStudents() {
 
 	const {loggedIn, setLoggedIn} = useContext(LoginContext);
 	const [file, setFile] = useState(null);
-	const [data, setData] = useState(null); // student data - TODO: get from database
+	const [data, setData] = useState(null);
 	const navigate = useNavigate();
 
 	useEffect(() => {
