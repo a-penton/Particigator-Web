@@ -52,6 +52,8 @@ function Login() {
       if (response.status === 200) {
         // Redirect to new screen
         setLoggedIn(true);
+        localStorage.setItem('email', email);
+        localStorage.setItem('password', password);
         localStorage.setItem("loggedIn", true);
         navigate("/");
       }

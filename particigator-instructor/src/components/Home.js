@@ -1,24 +1,44 @@
 import { useNavigate } from 'react-router-dom';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState} from 'react';
 import { LoginContext } from '../LoginContext';
 import NavBar from './NavBar';
 import AdminList from './AdminList';
 import './Home.css';
+import axios from "axios";
 
 function Home() {
 
 	const {loggedIn, setLoggedIn} = useContext(LoginContext);
+	const [name, setName] = useState('');
 	const navigate = useNavigate();
-
+	
 	useEffect(() => {
-		setLoggedIn(localStorage.getItem('loggedIn'));
-		if (!localStorage.getItem('loggedIn')) {
-			navigate("/login");
-		}
+		const fetchData = async () => {
+			//const data = {email: localStorage.getItem('item')};
+		
+			let api = 'http://localhost:3001'; 
+			const response = await axios.get(`${api}/admin/${localStorage.getItem('email')}`)
+				.then(response => {
+					if (response.status === 201 || response.status === 304) {
+						setName(response.data.name);
+						return response;
+					}
+				})
+				.catch(error => {
+					console.log(error.response.message);
+					setName("Instructor");
+				});
+				return response.data.name;
+			}
+			fetchData();
+			setLoggedIn(localStorage.getItem('loggedIn'));
+			if (!localStorage.getItem('loggedIn')) {
+				navigate("/login");
+			}
 	}, [])  
 
 	// TODO: get actual user's name from database
-	const name = "Aman";
+	//const name = "Aman";
 
 	return (
 		<div className="home-page">
