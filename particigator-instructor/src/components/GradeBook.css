@@ -19,3 +19,13 @@ th {
 td {
   text-align: center;
 }
+
+.download-grades {
+  background-color: #ff9248;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  color: white;
+  font-size: 15px;
+}

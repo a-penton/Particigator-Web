@@ -53,7 +53,7 @@ const GradeBook = () => {
         <table>
           <thead>
             <tr>
-              <th><button>Download CSV</button></th>
+              <th><button className="download-grades">Download CSV</button></th>
               {questions !== null ? 
                 questions.map((question) => {
                   return (
