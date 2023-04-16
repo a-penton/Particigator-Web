@@ -15,6 +15,7 @@ const activateAssignment = async (instructor, currAss) => {
 const AssignmentsList = () => {
   const [assignments, setAssignments] = useState(null);
   const [active, setActive] = useState(-1);
+  const [activeName, setActiveName] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -71,22 +72,24 @@ const AssignmentsList = () => {
     navigate('/assignments');
   }
 
-  async function activate(title) {
-    console.log('My Title' + title);
-    if (title === -1 || title === null) {
-      if (window.confirm("Deactivating " + active)) {
+  async function activate(assignmentID, assignmentName) {
+    console.log('My Title' + assignmentID);
+    if (assignmentID === -1 || assignmentID === null) {
+      if (window.confirm("Deactivating " + activeName)) {
         // TODO: Deactivate current active assignment in the backend
-        setActive(title);
-        console.log(title);
-        await activateAssignment(localStorage.getItem('email'), title);
+        setActive(assignmentID);
+        setActiveName(assignmentName);
+        console.log(assignmentID);
+        await activateAssignment(localStorage.getItem('email'), assignmentID);
       }
     }
     else {
-      if (window.confirm(active == null ? "Activating " + title : "Deactivating " + active + " and activating " + title)) {
+      if (window.confirm(active == -1 ? "Activating " + assignmentName : "Deactivating " + activeName + " and activating " + assignmentName)) {
         // TODO: Activate this assignment in the backend
-        setActive(title);
-        console.log(title);
-        await activateAssignment(localStorage.getItem('email'), title);
+        setActive(assignmentID);
+        setActiveName(assignmentName)
+        console.log(assignmentID);
+        await activateAssignment(localStorage.getItem('email'), assignmentID);
       }
     }
   }
@@ -104,8 +107,8 @@ const AssignmentsList = () => {
                 <div className="assignment_buttons">
                   {
                     assignment.numID == active ?
-                    <button className="action" onClick={() => activate("")}><PowerSettingsNew /></button> :
-                    <button className="action" onClick={() => activate(assignment.numID)}><PowerSettingsNew /></button>
+                    <button className="action" onClick={() => activate(-1, "")}><PowerSettingsNew /></button> :
+                    <button className="action" onClick={() => activate(assignment.numID, assignment.questionTitle)}><PowerSettingsNew /></button>
                   }
                   <button className="action" onClick={() => copy(assignment)}><ContentCopy /></button>
                   <button className="action" onClick={() => edit(assignment)}><Edit /></button>
