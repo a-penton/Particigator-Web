@@ -6,8 +6,8 @@ import "./GradeBook.css"
 const fetchUsers = async (instructor) => {
   return await API.getInstructorUsers(instructor);
 }
-const fetchQuestions = async () => {
-  return await API.getAllQuestions();
+const fetchQuestions = async (instructor) => {
+  return await API.getInstructorQuestions(instructor);
 }
 
 const fetchGrades = async (instructor) => {
@@ -39,7 +39,7 @@ const GradeBook = () => {
 			}
       // get assignment data
       try {
-        const data = await fetchQuestions();
+        const data = await fetchQuestions(localStorage.getItem('email'));
         setQuestions(data);
         setIsLoading(false);
       } catch (error) {
