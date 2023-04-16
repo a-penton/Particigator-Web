@@ -144,16 +144,21 @@ function EditStudents() {
 			<h1>Student Information</h1>
 			<form className="student-file-form" onSubmit={handleSubmit}>
 				<label className="file-upload">
-					Choose file...
+					Upload Students
 					<input className="student-file-input" type="file" onChange={handleFileUpload} />
 				</label>
 				<br />
-				<button className="btn" type="submit">Upload csv</button>
+				<button className="btn" type="submit">Submit csv</button>
 			</form>
 			<br />
-			<button className="btn" onClick={download}>Download students</button>
-			<br />
-			<h3>Current Data</h3>
+			<div className="download-div">
+				<div>
+				<h3>Current Data</h3>
+				</div>
+				<div className="dnld-div">
+				<button className="btn dnld" onClick={download}>Download Students</button>
+				</div>
+			</div>
 			{data !== null ? 
 			<table className="student-data-table">
 				<thead>

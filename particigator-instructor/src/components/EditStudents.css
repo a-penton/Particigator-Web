@@ -35,4 +35,16 @@
 	padding: 10px;
 	color: white;
 	font-size: 15px;
-  }
+}
+
+.download-div {
+	display: flex;
+	justify-content: center;
+}
+
+.dnld-div {
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	margin-left: 5%
+}
