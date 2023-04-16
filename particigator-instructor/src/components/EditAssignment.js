@@ -80,7 +80,7 @@ function EditAssignment() {
 			<NavBar />
 			<h1>Edit Assignment</h1>
 			<br />
-			<form className="login-form" onSubmit={submitAssignment}>
+			<form className="edit-assignment-form" onSubmit={submitAssignment}>
 				<div className="form-group">
 					<label htmlFor="Title">Assignment Title: </label>
 					<input 

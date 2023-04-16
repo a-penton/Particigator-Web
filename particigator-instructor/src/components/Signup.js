@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { LoginContext } from '../LoginContext';
 import Header from './Header.js';
 import './Login.css';
@@ -83,10 +83,11 @@ function Signup() {
     <Header />
     <div className="login-page">
       <div className="welcome">
-        <h3>Welcome to Particigator!</h3>
-        <h4>Create an account</h4>
+        <h3>Create an Account</h3>
         <form className="login-form" onSubmit={handleSubmit}>
-		  <input 
+          <label className="login-label"><p>Name</p></label>
+		      <input 
+            className="login-input"
             type="text"
             name="name"
             value={name}
@@ -95,7 +96,9 @@ function Signup() {
 			      required
           />
           <br />
+          <label className="login-label"><p>Email</p></label>
           <input 
+            className="login-input"
             type="text"
             name="email"
             value={email}
@@ -104,7 +107,9 @@ function Signup() {
 			      required
           />
           <br />
+          <label className="login-label"><p>Password</p></label>
           <input
+            className="login-input"
             type="password"
             name="password"
             value={password}
@@ -114,8 +119,10 @@ function Signup() {
             title="Password must be at least 8 characters long"
             required
           />
-		  <br />
-		  <input
+          <br />
+          <label className="login-label"><p>Confirm Password</p></label>
+          <input
+            className="login-input"
             type="password"
             name="password2"
             value={password2}
@@ -127,9 +134,9 @@ function Signup() {
           />
           <br />
           <br />
-          <button type="submit">Login</button>
+          <button className="login-btn" type="submit">Sign up</button>
         </form>
-        <p>Already have an account? <a href="/login">Log in</a></p>
+        <p>Already have an account? <Link to="/login">Log in</Link></p>
       </div>
     </div>
   </>)

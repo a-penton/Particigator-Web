@@ -27,9 +27,9 @@
 
 .left {
   display: flex;
-  width: auto;
+  width: 33%;
   align-items: center;
-  justify-content: center;
+  justify-content: left;
   margin: 0 auto;
   min-height: 100%;
 }
@@ -39,13 +39,14 @@
   font-weight: bold;
   margin: 0;
   font-size: 100%;
+  width: auto;
 }
 
 .right {
   display: flex;
-  width: auto;
-  align-items: center;
-  justify-content: center;
+  width: 33%;
+  align-items: right;
+  justify-content: right;
   margin: 0 auto;
   min-height: 100%;
 }

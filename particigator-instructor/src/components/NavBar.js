@@ -45,7 +45,7 @@ function NavBar() {
         <Link className={(current === 'students' ? "current " : "") + "navlink"} to="/students">Students</Link>
       </div>
       <div className="right">
-        <Link className="logout" onClick={logout} to="/login">Signout</Link>
+        <Link className="logout" onClick={logout} to="/login">Sign out</Link>
       </div>
     </div>
   )
