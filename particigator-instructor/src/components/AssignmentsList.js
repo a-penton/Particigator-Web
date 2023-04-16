@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { API } from "../API";
+import { PowerSettingsNew, ContentCopy, Edit, Delete, Power } from '@mui/icons-material';
 import "./AssignmentsList.css"
 
 const fetchAssignments = async () => {
@@ -89,12 +90,12 @@ const AssignmentsList = () => {
                 <div className="assignment_buttons">
                   {
                     assignment.questionTitle == active ?
-                    <button onClick={() => activate("")}>Deactivate</button> :
-                    <button onClick={() => activate(assignment.questionTitle)}>Activate</button>
+                    <button className="action" onClick={() => activate("")}><PowerSettingsNew /></button> :
+                    <button className="action" onClick={() => activate(assignment.questionTitle)}><PowerSettingsNew /></button>
                   }
-                  <button className="action" onClick={() => copy(assignment)}>copy</button>
-                  <button className="action" onClick={() => edit(assignment)}>edit</button>
-                  <button className="action" onClick={() => erase(assignment)}>delete</button>
+                  <button className="action" onClick={() => copy(assignment)}><ContentCopy /></button>
+                  <button className="action" onClick={() => edit(assignment)}><Edit /></button>
+                  <button className="action" onClick={() => erase(assignment)}><Delete /></button>
                 </div>
               </div>
             )
