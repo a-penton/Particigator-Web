@@ -50,6 +50,15 @@
   min-height: 100%;
 }
 
+.navlink {
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.current {
+  background-color: #163acf;
+}
+
 .logout {
   background-color: #163acf;
   color: white;
