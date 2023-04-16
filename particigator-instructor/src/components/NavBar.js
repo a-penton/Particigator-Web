@@ -30,26 +30,10 @@ function NavBar() {
         <Link to="/students">Students</Link>
       </div>
       <div className="right">
-        <Link className="logout" onClick={logout}>Sign out</Link>
+        <Link className="logout" onClick={logout}>Signout</Link>
       </div>
     </div>
   )
-
-  // return (
-  //   <div className = "navbar">
-  //     <div className="left">
-	// 			<img src={logo} className="logo" alt="logo" />
-	// 		</div>
-  //     <div className = "links">
-  //     <img src={logo} className="logo" alt="logo" />
-  //         <Link to="/">Home</Link>
-  //         <Link to="/assignments">Assignments</Link>
-  //         <Link to="/grades">Grades</Link>
-  //         <Link to="/students">Students</Link>
-  //         <button onClick={logout}>Log out</button>
-  //     </div>
-  //   </div>
-  // )
 }
 
 export default NavBar;
