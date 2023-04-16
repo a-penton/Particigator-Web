@@ -11,11 +11,13 @@ export function buildAdminControllers(databaseConnection) {
       },
       getByEmail: async (req, res) => {
         const email = req.params.email;
-        const documents = await db.Admin.findOne({ email });
+        const documents = await db.Admin.findOne({ email: email });
         if (documents === null) {
           return res.status(404).send('User not found');
         }
-        return res.send(documents);
+        else{
+          return res.status(201).send(documents);
+        };
       },
       create: async (req, res) => {
         console.log(req.body.data.email);
