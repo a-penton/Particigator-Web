@@ -30,7 +30,6 @@ function NavBar() {
   function logout() {
     setLoggedIn(false);
     localStorage.removeItem('loggedIn');
-    navigate("/login");
   }
 
   return (
@@ -46,7 +45,7 @@ function NavBar() {
         <Link className={(current === 'students' ? "current " : "") + "navlink"} to="/students">Students</Link>
       </div>
       <div className="right">
-        <a className="logout" onClick={logout} href="/login">Signout</a>
+        <Link className="logout" onClick={logout} to="/login">Signout</Link>
       </div>
     </div>
   )
