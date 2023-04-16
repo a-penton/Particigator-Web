@@ -139,7 +139,7 @@ function EditStudents() {
 	}
 
 	return (
-		<div>
+		<div className="students-page">
 			<NavBar />
 			<h1>Student Information</h1>
 			<form className="student-file-form" onSubmit={handleSubmit}>

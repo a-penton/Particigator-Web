@@ -3,6 +3,7 @@ import { useContext, useEffect } from 'react';
 import { LoginContext } from '../LoginContext';
 import NavBar from './NavBar';
 import GradeBook from './GradeBook';
+import './Grades.css';
 
 function Grades() {
 
@@ -17,7 +18,7 @@ function Grades() {
 	}, [])
 
 	return (
-		<div>
+		<div className="grades-page">
 			<NavBar />
 			<h1>Grades</h1>
 			<GradeBook />

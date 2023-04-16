@@ -18,7 +18,7 @@ function Assignments() {
 	}, [])
 
 	return (
-		<div>
+		<div className="assignment-page">
 			<NavBar />
 			<h1>Assignments</h1>
 			<AssignmentsList />
