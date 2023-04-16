@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { API } from "../API";
 import "./GradeBook.css"
 
-const fetchUsers = async () => {
-  return await API.getAllUsers();
+const fetchUsers = async (instructor) => {
+  return await API.getInstructorUsers(instructor);
 }
 const fetchQuestions = async () => {
   return await API.getAllQuestions();
@@ -20,13 +20,17 @@ const GradeBook = () => {
     const fetchData = async () => {
       // get user data
       try {
-        const data = await fetchUsers();
-        setUsers(data);
-        setIsLoading(false);
-      } catch (error) {
-        setError(error);
-        setIsLoading(false);
-      }
+			  const tempUsers = await fetchUsers(localStorage.getItem('email'));
+			  if(tempUsers !== undefined || tempUsers !== null){
+          console.log(tempUsers);
+          setUsers(tempUsers);
+			  }
+			  else{
+				  setUsers(null);
+			  }
+			} catch (error) {
+				console.log(error);
+			}
       // get assignment data
       try {
         const data = await fetchQuestions();
