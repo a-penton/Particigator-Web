@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { API } from "../API";
+import GradesTable from './GradesTable.js';
 import "./GradeBook.css"
 
 const fetchUsers = async (instructor) => {
@@ -45,12 +46,13 @@ const GradeBook = () => {
         setError(error);
         setIsLoading(false);
       }
-      // TODO: get grades data
+      // get grades data
       try {
         const gradesData = await fetchGrades(localStorage.getItem('email'));
-        console.log(gradesData);
+        // console.log(gradesData);
         setGrades(gradesData);
         setIsLoading(false);
+        console.log('btw grades is', gradesData)
       } catch (error) {
         setError(error);
         setIsLoading(false);
@@ -64,32 +66,7 @@ const GradeBook = () => {
       {isLoading ? <p>Loading...</p> : null}
       {error ? <p>Error: {error.message}</p> : null}
       <div className="Tabling">
-        <table>
-          <thead>
-            <tr>
-              <th><button className="download-grades">Download CSV</button></th>
-              {questions !== null ? 
-                questions.map((question) => {
-                  return (
-                    <th key={question.questionTitle}>{question.questionTitle}</th>
-                  )
-                }) : null
-              }
-            </tr>
-          </thead>
-          <tbody>
-            {users !== null ? 
-              users.map((user) => {
-                return (
-                  <tr key={user.id}>
-                    <td>{user.id}</td>
-                    {/* TODO: add grades here */}
-                  </tr>
-                )
-              }) : null
-            }
-          </tbody>
-        </table>
+        <GradesTable grades={grades} questions={questions} students={users} />
       </div>
     </div>
   );
