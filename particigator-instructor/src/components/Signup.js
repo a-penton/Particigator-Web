@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LoginContext } from '../LoginContext';
+import Header from './Header.js';
 import './Login.css';
 import { API } from "../API";
 import axios from "axios";
@@ -78,7 +79,8 @@ function Signup() {
   }
 
   // have to return nested divs to center it on the page
-  return (
+  return (<>
+    <Header />
     <div className="login-page">
       <div className="welcome">
         <h3>Welcome to Particigator!</h3>
@@ -90,7 +92,7 @@ function Signup() {
             value={name}
             placeholder="Name"
             onChange={handleNameChange}
-			required
+			      required
           />
           <br />
           <input 
@@ -99,7 +101,7 @@ function Signup() {
             value={email}
             placeholder="Email"
             onChange={handleEmailChange}
-			required
+			      required
           />
           <br />
           <input
@@ -108,9 +110,9 @@ function Signup() {
             value={password}
             placeholder="Password"
             onChange={handlePasswordChange}
-			pattern='.{8,}'
-			title="Password must be at least 8 characters long"
-			required
+            pattern='.{8,}'
+            title="Password must be at least 8 characters long"
+            required
           />
 		  <br />
 		  <input
@@ -119,9 +121,9 @@ function Signup() {
             value={password2}
             placeholder="Confirm Password"
             onChange={handlePassword2Change}
-			pattern={password}
-			title="Passwords must match"
-			required
+            pattern={password}
+            title="Passwords must match"
+            required
           />
           <br />
           <br />
@@ -130,7 +132,7 @@ function Signup() {
         <p>Already have an account? <a href="/login">Log in</a></p>
       </div>
     </div>
-  )
+  </>)
 }
 
 export default Signup;

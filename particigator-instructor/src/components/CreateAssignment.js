@@ -40,6 +40,8 @@ function CreateAssignment() {
 		postNewQuestion({
 			questionTitle: questionTitle,
 			question: question,
+			// TODO: Simplify this, randomize on the frontend
+			// So we will only need answers, no id/option
 			options: [
 				{id: "0", option: "A", answer: correctAnswer},
 				{id: "1", option: "B", answer: incorrectAnswer1},

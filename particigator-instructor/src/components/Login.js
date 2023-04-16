@@ -1,6 +1,7 @@
 import React, {useState, useContext, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { LoginContext } from '../LoginContext';
+import Header from './Header.js';
 import './Login.css';
 import axios from "axios";
 
@@ -64,7 +65,8 @@ function Login() {
   };
   
   // have to return nested divs to center it on the page
-  return (
+  return (<>
+    <Header />
     <div className="login-page">
       <div className="welcome">
         <h3>Welcome to Particigator!</h3>
@@ -92,7 +94,7 @@ function Login() {
         <p>Don't have an account? <a href="/signup">Sign Up</a></p>
       </div>
     </div>
-  )
+  </>)
 }
 
 export default Login;

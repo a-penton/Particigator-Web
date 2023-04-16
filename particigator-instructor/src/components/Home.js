@@ -52,7 +52,7 @@ function Home() {
 				<button className="home-button to-grades" onClick={() => {navigate('/grades')}}>Grades</button>
 				<br />
 				<br />
-				<button className="home-button to-students" onClick={() => {navigate('/editStudents')}}>Edit Students</button>
+				<button className="home-button to-students" onClick={() => {navigate('/students')}}>Students</button>
 			</div>
 			<br />
 			{/* <AdminList/> */}
