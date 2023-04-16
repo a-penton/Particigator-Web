@@ -24,7 +24,7 @@ export function buildAdminControllers(databaseConnection) {
         const email = req.body.data.email;
         const name = req.body.data.name;
         const pass = await bcrypt.hash(req.body.data.password, 10);
-        const reqMod = {email: email, password: pass, name: name};
+        const reqMod = {email: email, password: pass, name: name, currAss: '3'};
   
         const user = await db.Admin.findOne({ email });
         if (user == null) {
