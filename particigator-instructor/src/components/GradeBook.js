@@ -64,7 +64,7 @@ const GradeBook = () => {
       {isLoading ? <p>Loading...</p> : null}
       {error ? <p>Error: {error.message}</p> : null}
       <div className="Tabling">
-        <table>
+        {/* <table>
           <thead>
             <tr>
               <th><button className="download-grades">Download CSV</button></th>
@@ -83,13 +83,36 @@ const GradeBook = () => {
                 return (
                   <tr key={user.id}>
                     <td>{user.id}</td>
-                    {/* TODO: add grades here */}
                   </tr>
                 )
               }) : null
             }
           </tbody>
-        </table>
+        </table> */}
+        {grades != null ? <table className="student-data-table">
+          <thead>
+            <tr>
+            <th><button className="download-grades">Download CSV</button></th>
+              <th>Student</th>
+              <th>Question</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            {grades.map(row => {
+              // Each row is {id: studentID, instructor: email}
+              console.log(row);
+              return (
+                <tr key={row.id}>
+                  <td></td>
+                  <td>{row.id}</td>
+                  <td>{row.question}</td>
+                  <td>{row.score}</td>
+                </tr>
+              )
+            })}
+          </tbody>
+			</table> : <h3>No Data</h3>}
       </div>
     </div>
   );
