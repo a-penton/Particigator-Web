@@ -23,7 +23,7 @@ function Assignments() {
 			<h1>Assignments Page</h1>
 			<AssignmentsList />
 			<br />
-			<Link className="create-assignment" onClick={() => {navigate('/createAssignment')}}>Create New Assignment</Link>
+			<Link className="create-assignment" to='/createAssignment'>Create New Assignment</Link>
 		</div>
 	)
 }
