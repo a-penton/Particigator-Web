@@ -6,8 +6,8 @@ import axios from "axios";
 import './EditStudents.css';
 import { API } from "../API";
 
-const fetchUsers = async () => {
-	return await API.getAllUsers();
+const fetchUsers = async (instructor) => {
+	return await API.getInstructorUsers(instructor);
 }
 
 function EditStudents() {
@@ -25,9 +25,15 @@ function EditStudents() {
 		const fetchData = async () => {
 			// get user data
 			try {
-			  const tempData = await fetchUsers();
-			  console.log(tempData);
-			  setData(tempData);
+			  const tempData = await fetchUsers(localStorage.getItem('email'));
+			  if(tempData !== undefined || tempData !== null){
+				console.log(tempData);
+				setData(tempData);
+			  }
+			  else{
+				setData(null);
+			  }
+
 			} catch (error) {
 				console.log(error);
 			}
@@ -43,6 +49,8 @@ function EditStudents() {
 		event.preventDefault();
     	let api = 'http://localhost:3001';
 		let errors = ""; 
+		var asyncData = null;
+		let result = "";
 		let instructor = localStorage.getItem('email');
 		if (file) {
 			await axios.delete(`${api}/users/${instructor}`, {instructor: instructor})
@@ -58,7 +66,7 @@ function EditStudents() {
 			
 			reader.onload = async (event) => {
 				const csvData = event.target.result;
-				const asyncData = csvData.split(/\r?\n/);
+				asyncData = csvData.split(/\r?\n/);
 				setData(asyncData);
 				console.log(data);
 				console.log(asyncData);
@@ -66,11 +74,14 @@ function EditStudents() {
 					for (var i = 0; i < asyncData.length; i++) { 
 						console.log(asyncData[i]); 
 						let student = {id: asyncData[i], instructor: localStorage.getItem('email')};
-						await axios.post(`${api}/users`, {
+						result = await axios.post(`${api}/users`, {
 							student}
 						  ).then(response => {
 							if (response.status === 201) {
 							  return;
+							}
+							else if(response.status == 300){
+								return "Already in system";
 							}
 						  })
 						  .catch(error => {
@@ -88,8 +99,21 @@ function EditStudents() {
 				// so this might log null/undefined
 			};
 			reader.readAsText(file);
-			window.alert("Data uploaded.");
+			if(result === "Already in system"){
+				window.alert("An uploaded user is already in the system with another instructor.");
+			}
+			else{
+				window.alert("Data uploaded.");
+			}
 			navigate("/");
+			// if(asyncData !== null){
+			// 	window.alert("Data uploaded.");
+			// 	navigate("/");
+			// }
+			// else{
+			// 	window.alert("An uploaded user is already in the system with another instructor.");
+			// 	navigate("/");
+			// }
         	// navigate("/students");
 			//alert(errors);
 		}

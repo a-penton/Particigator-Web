@@ -14,19 +14,31 @@ export function buildUsersControllers(databaseConnection) {
       }
       return res.send(documents);
     },
+    getByInstructor: async (req, res) => {
+      const instructor = req.params.instructor;
+      console.log(instructor)
+      const documents = await db.Students.find({ instructor: instructor }).toArray();
+      if (documents === null || documents.length === 0) {
+        console.log("Users not found");
+        return res.status(404).send('Users not found');
+      }
+      else {
+        console.log(documents);
+        return res.status(201).send(documents);
+      }
+    },
     create: async (req, res) => {
-      //console.log(req.body.student);
+      console.log(req.body.student);
       const id = req.body.student.id;
       const instructor = req.body.student.instructor;
       const reqMod = {id: id, instructor: instructor};
-      console.log(reqMod)
-      const documents = await db.Students.findOne({ id });
-      if (documents === null && id !== "") {
+      const documents = await db.Students.findOne({id});
+      if(documents === null){
         await db.Students.insertOne(reqMod);
         return res.sendStatus(201);
       }
       else {
-        return res.status(404).send("Student with id " + documents + " already in system");
+        return res.sendStatus(300);
       }
     },
     update: async (req, res) => {
@@ -38,7 +50,6 @@ export function buildUsersControllers(databaseConnection) {
       const documents = await db.Students.findOne({instructor: instructor});
       if (documents !== null) {
         await db.Students.deleteMany({instructor: instructor});
-        console.log("hello");
         return res.sendStatus(201);
       }
       else {
