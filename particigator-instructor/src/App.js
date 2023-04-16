@@ -24,7 +24,6 @@ function App() {
   return (
     <div className="App">
       <LoginContext.Provider value={{loggedIn, setLoggedIn}}>
-        <Header />
         <Router>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -34,7 +33,7 @@ function App() {
             <Route path="/grades" element={<Grades />} />
             <Route path="/createAssignment" element={<CreateAssignment />} />
             <Route path="/editAssignment" element={<EditAssignment />} />
-            <Route path="/editStudents" element={<EditStudents />} />
+            <Route path="/students" element={<EditStudents />} />
           </Routes>
         </Router>
       </LoginContext.Provider>
