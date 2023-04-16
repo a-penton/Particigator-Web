@@ -22,7 +22,7 @@ async function main() {
   app.get('/users/:id', usersControllers.getById);
   app.post('/users', usersControllers.create);
   app.put('/users/:id', usersControllers.update);
-  app.delete('/users/:id', usersControllers.delete);
+  app.delete('/users/:email', usersControllers.delete);
 
   app.get('/questions', questionsControllers.getAll);
   app.get('/questions/:id', questionsControllers.getById);

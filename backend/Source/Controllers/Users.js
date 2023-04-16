@@ -15,16 +15,36 @@ export function buildUsersControllers(databaseConnection) {
       return res.send(documents);
     },
     create: async (req, res) => {
-      await db.Students.insertOne(req.body);
-      return res.sendStatus(201);
+      //console.log(req.body.student);
+      const id = req.body.student.id;
+      const instructor = req.body.student.instructor;
+      const reqMod = {id: id, instructor: instructor};
+      console.log(reqMod)
+      const documents = await db.Students.findOne({ id });
+      if (documents === null && id !== "") {
+        await db.Students.insertOne(reqMod);
+        return res.sendStatus(201);
+      }
+      else {
+        return res.status(404).send("Student with id " + documents + " already in system");
+      }
     },
     update: async (req, res) => {
       return res.sendStatus(501)
     },
     delete: async (req, res) => {
-      const id = req.params.id;
-      await collection.deleteOne({ id });
-      return res.sendStatus(200);
+      const instructor = req.params.email;
+      console.log(req.params.email);
+      const documents = await db.Students.findOne({instructor: instructor});
+      if (documents !== null) {
+        await db.Students.deleteMany({instructor: instructor});
+        console.log("hello");
+        return res.sendStatus(201);
+      }
+      else {
+        return res.status(404).send("Could not delete students");
+      }
+
     }
   }
 }

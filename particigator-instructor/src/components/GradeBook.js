@@ -64,7 +64,7 @@ const GradeBook = () => {
               users.map((user) => {
                 return (
                   <tr key={user.id}>
-                    <td>{user.name}</td>
+                    <td>{user.id}</td>
                     {/* TODO: add grades here */}
                   </tr>
                 )

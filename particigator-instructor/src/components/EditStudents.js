@@ -2,7 +2,13 @@ import { useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { LoginContext } from '../LoginContext';
 import NavBar from './NavBar';
+import axios from "axios";
 import './EditStudents.css';
+import { API } from "../API";
+
+const fetchUsers = async () => {
+	return await API.getAllUsers();
+}
 
 function EditStudents() {
 
@@ -16,20 +22,63 @@ function EditStudents() {
 		if (!localStorage.getItem('loggedIn')) {
 			navigate("/login");
 		}
+		const fetchData = async () => {
+			// get user data
+			try {
+			  const tempData = await fetchUsers();
+			  console.log(tempData);
+			  setData(tempData);
+			} catch (error) {
+				console.log(error);
+			}
+		};
+		fetchData();
 	}, [])  
 
 	function handleFileUpload(event) {
 		setFile(event.target.files[0]);
 	}
 
-	function handleSubmit(event) {
+	async function handleSubmit(event) {
 		event.preventDefault();
+    	let api = 'http://localhost:3001';
+		let errors = ""; 
+		let instructor = localStorage.getItem('email');
 		if (file) {
+			await axios.delete(`${api}/users/${instructor}`, {instructor: instructor})
+				.then(response => {
+					if (response.status === 201) {
+						return;
+					}
+				})
+				.catch(error => {
+					errors += error.response.data.message + "\n"
+			});
 			const reader = new FileReader();
+			
 			reader.onload = async (event) => {
 				const csvData = event.target.result;
-				const lines = csvData.split(/\r?\n/);
-				setData(lines.map((line) => line.split(',')));
+				const asyncData = csvData.split(/\r?\n/);
+				setData(asyncData);
+				console.log(data);
+				console.log(asyncData);
+				if(asyncData !== null){
+					for (var i = 0; i < asyncData.length; i++) { 
+						console.log(asyncData[i]); 
+						let student = {id: asyncData[i], instructor: localStorage.getItem('email')};
+						await axios.post(`${api}/users`, {
+							student}
+						  ).then(response => {
+							if (response.status === 201) {
+							  return;
+							}
+						  })
+						  .catch(error => {
+							errors += error.response.data.message + "\n"
+						  });
+					}
+					//setData(asyncData);
+				}
 				// TODO: Upload data to backend
 				// data is an array of rows
 				// each row is [studentID, sectionNumber]
@@ -39,6 +88,10 @@ function EditStudents() {
 				// so this might log null/undefined
 			};
 			reader.readAsText(file);
+			window.alert("Data uploaded.");
+			navigate("/");
+        	// navigate("/students");
+			//alert(errors);
 		}
 		else {
 			alert('Error: No file selected');
@@ -46,11 +99,11 @@ function EditStudents() {
 	}
 
 	function download() {
-		if (data == undefined) {
+		if (data === undefined) {
 			alert('No data to download!');
 			return;
 		}
-		const csvData = data.map(row => row.join(',')).join('\n');
+		const csvData = data.join('\n');
 		const blob = new Blob([csvData], { type: "text/csv" });
 		const url = URL.createObjectURL(blob);
 		const link = document.createElement("a");
@@ -81,18 +134,18 @@ function EditStudents() {
 				<thead>
 					<tr>
 						<th>Student</th>
-						<th>Section</th>
 					</tr>
 				</thead>
 				<tbody>
-					{data.map(row =>
-					// Each row is [studentID, section#]
-						<tr key={row[0]}>
-							<td>{row[0]}</td>
-							<td>{row[1]}</td>
-						</tr>
+					{data.map(row => {
+						// Each row is {id: studentID, instructor: email}
+						console.log(row);
+						return (
+							<tr key={row.id}>
+								<td>{row.id}</td>
+							</tr>
 						)
-					}
+					})}
 				</tbody>
 			</table> : <h4>No Data</h4>
 			}
