@@ -9,11 +9,16 @@ const fetchQuestions = async () => {
   return await API.getAllQuestions();
 }
 
+const fetchGrades = async (instructor) => {
+	return await API.getGrades(instructor);
+}
+
 const GradeBook = () => {
   const [users, setUsers] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [questions, setQuestions] = useState(null);
+  const [grades, setGrades] = useState(null);
 
 
   useEffect(() => {
@@ -41,6 +46,15 @@ const GradeBook = () => {
         setIsLoading(false);
       }
       // TODO: get grades data
+      try {
+        const gradesData = await fetchGrades(localStorage.getItem('email'));
+        console.log(gradesData);
+        setGrades(gradesData);
+        setIsLoading(false);
+      } catch (error) {
+        setError(error);
+        setIsLoading(false);
+      }
     };
     fetchData();
   }, []);

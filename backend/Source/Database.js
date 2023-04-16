@@ -7,6 +7,7 @@ const COLLECTIONS = {
     Students: "Students",
     Questions: "Questions",
     Admin: "Admin",
+    StudentSubmissions: "StudentSubmissions",
 }
 
 export async function connectToDatabase() {
@@ -26,5 +27,6 @@ export async function connectToDatabase() {
         Students: db.collection(COLLECTIONS.Students),
         Questions: db.collection(COLLECTIONS.Questions),
         Admin: db.collection(COLLECTIONS.Admin),
+        StudentSubmissions: db.collection(COLLECTIONS.StudentSubmissions),
     };
 }
