@@ -1,6 +1,7 @@
 .assignments {
-	border: solid 2px forestgreen;
 	margin: 0 20vmax;
+	padding: 3vmin 0;
+	background-color: #ff9248;
 }
 
 .assignment {
@@ -11,6 +12,7 @@
 	width: 90%;
 	display: flex;
 	justify-content: space-between;
+	background-color: white;
 }
 
 .active {
@@ -18,7 +20,10 @@
 }
 
 .action {
-	margin: 2px;
+	margin: 0 5px;
+	border: none;
+	background: none;
+	cursor: pointer;
 }
 
 .Tabling {
