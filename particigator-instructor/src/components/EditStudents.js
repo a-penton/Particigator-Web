@@ -25,14 +25,14 @@ function EditStudents() {
 		const fetchData = async () => {
 			// get user data
 			try {
-			  const tempData = await fetchUsers(localStorage.getItem('email'));
-			  if(tempData !== undefined || tempData !== null){
-				console.log(tempData);
-				setData(tempData);
-			  }
-			  else{
-				setData(null);
-			  }
+				const tempData = await fetchUsers(localStorage.getItem('email'));
+				if(tempData !== undefined || tempData !== null){
+					console.log(tempData);
+					setData(tempData);
+				}
+				else{
+					setData(null);
+				}
 
 			} catch (error) {
 				console.log(error);
