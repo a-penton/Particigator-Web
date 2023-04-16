@@ -6,6 +6,7 @@ import { connectToDatabase } from './Database';
 import { buildUsersControllers } from './Controllers/Users';
 import { buildQuestionsControllers } from './Controllers/Questions';
 import { buildAdminControllers } from './Controllers/Admin';
+import { buildStudentSubmissionsControllers } from './Controllers/StudentSubmissions';
 
 async function main() {
   const app = express();
@@ -17,6 +18,7 @@ async function main() {
   const usersControllers = buildUsersControllers(databaseConnection);
   const questionsControllers = buildQuestionsControllers(databaseConnection);
   const adminControllers = buildAdminControllers(databaseConnection);
+  const submissionsControllers = buildStudentSubmissionsControllers(databaseConnection);
 
   app.get('/users', usersControllers.getAll);
   //app.get('/users/:id', usersControllers.getById);
@@ -37,6 +39,12 @@ async function main() {
   app.post('/login', adminControllers.login);
   app.put('/admin/:email', adminControllers.update);
   app.delete('/admin/:email', adminControllers.delete);
+
+  app.get('/submissions', submissionsControllers.getAll);
+  app.get('/submissions/:instructor', submissionsControllers.getByInstructor);
+  app.post('/submissions', submissionsControllers.create);
+  app.put('/submissions/:id', submissionsControllers.update);
+  app.delete('/submissions/:id', submissionsControllers.delete);
   
   app.listen(3001, () => {
     console.log('Server started on port 3001');

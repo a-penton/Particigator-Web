@@ -25,6 +25,23 @@ export class API {
     return res;
   }
 
+  static async getGrades(instructor) {
+    const res= await axios.get(`${api}/submissions/${instructor}`, {instructor: instructor})
+    .then(response => {
+      if(response.status !== 404){
+        //console.log('Working ' + response.data);
+        return response.data;
+      }
+    })
+    .catch(error => {
+      console.error(error);
+      return null;
+    });
+    //console.log(response.data);
+    console.log('Working ' + res);
+    return res;
+  }
+
   static async getAllQuestions() {
     const response = await axios.get(`${api}/questions`);
     return response.data;
