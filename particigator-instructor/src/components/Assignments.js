@@ -1,8 +1,9 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { LoginContext } from '../LoginContext';
 import React, {useState, useContext, useEffect} from 'react';
 import NavBar from './NavBar';
 import AssignmentsList from './AssignmentsList';
+import './Assignments.css';
 
 function Assignments() {
 
@@ -22,7 +23,7 @@ function Assignments() {
 			<h1>Assignments Page</h1>
 			<AssignmentsList />
 			<br />
-			<button onClick={() => {navigate('/createAssignment')}}>Create an Assignment</button>
+			<Link className="create-assignment" onClick={() => {navigate('/createAssignment')}}>Create New Assignment</Link>
 		</div>
 	)
 }

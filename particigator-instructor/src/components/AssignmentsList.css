@@ -1,7 +1,7 @@
 .assignments {
-	border: solid 2px forestgreen;
 	margin: 0 20vmax;
-	background-color: #fc930a;
+	padding: 3vmin 0;
+	background-color: #ff9248;
 }
 
 .assignment {
@@ -23,6 +23,7 @@
 	margin: 0 5px;
 	border: none;
 	background: none;
+	cursor: pointer;
 }
 
 .Tabling {
