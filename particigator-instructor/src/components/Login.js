@@ -1,5 +1,5 @@
 import React, {useState, useContext, useEffect} from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { LoginContext } from '../LoginContext';
 import Header from './Header.js';
 import './Login.css';
@@ -69,10 +69,11 @@ function Login() {
     <Header />
     <div className="login-page">
       <div className="welcome">
-        <h3>Welcome to Particigator!</h3>
-        <h4>Sign in to get started</h4>
+        <h3>Sign in</h3>
         <form className="login-form" onSubmit={handleSubmit}>
+          <label className="login-label"><p>Email</p></label>
           <input 
+            className="login-input"
             type="text"
             name="email"
             value={email}
@@ -80,7 +81,9 @@ function Login() {
             onChange={handleEmailChange}
           />
           <br />
+          <label className="login-label"><p>Password</p></label>
           <input
+            className="login-input"
             type="password"
             name="password"
             value={password}
@@ -89,9 +92,9 @@ function Login() {
           />
           <br />
           <br />
-          <button type="submit">Login</button>
+          <button className="login-btn" type="submit">Login</button>
         </form>
-        <p>Don't have an account? <a href="/signup">Sign Up</a></p>
+        <p>Don't have an account? <Link to="/signup">Sign Up</Link></p>
       </div>
     </div>
   </>)
