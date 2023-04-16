@@ -90,7 +90,7 @@ function Signup() {
             value={name}
             placeholder="Name"
             onChange={handleNameChange}
-			required
+			      required
           />
           <br />
           <input 
@@ -99,7 +99,7 @@ function Signup() {
             value={email}
             placeholder="Email"
             onChange={handleEmailChange}
-			required
+			      required
           />
           <br />
           <input
@@ -108,9 +108,9 @@ function Signup() {
             value={password}
             placeholder="Password"
             onChange={handlePasswordChange}
-			pattern='.{8,}'
-			title="Password must be at least 8 characters long"
-			required
+            pattern='.{8,}'
+            title="Password must be at least 8 characters long"
+            required
           />
 		  <br />
 		  <input
@@ -119,9 +119,9 @@ function Signup() {
             value={password2}
             placeholder="Confirm Password"
             onChange={handlePassword2Change}
-			pattern={password}
-			title="Passwords must match"
-			required
+            pattern={password}
+            title="Passwords must match"
+            required
           />
           <br />
           <br />
