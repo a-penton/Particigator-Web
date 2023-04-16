@@ -21,17 +21,21 @@ function Home() {
 	const name = "Aman";
 
 	return (
-		<div>
+		<div className="home-page">
 			<NavBar />
 			<h1>Welcome, {name}!</h1>
 			<h4>What would you like to do today?</h4>
 			<div className="buttons">
-				<button onClick={() => {navigate('/assignments')}}>Assignments</button>
-				<button onClick={() => {navigate('/grades')}}>Grades</button>
-				<button onClick={() => {navigate('/editStudents')}}>Edit Students</button>
+				<button className="home-button to-assignments" onClick={() => {navigate('/assignments')}}>Assignments</button>
+				<br />
+				<br />
+				<button className="home-button to-grades" onClick={() => {navigate('/grades')}}>Grades</button>
+				<br />
+				<br />
+				<button className="home-button to-students" onClick={() => {navigate('/editStudents')}}>Edit Students</button>
 			</div>
 			<br />
-			<AdminList/>
+			{/* <AdminList/> */}
 		</div>
 	)
 }
