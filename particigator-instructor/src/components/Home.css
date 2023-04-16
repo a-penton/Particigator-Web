@@ -16,9 +16,10 @@
 .home-button {
 	width: 100%;
 	height: 20%;
-	background-color: #fc930a;
+	background-color: #ff9248;
 	color: white;
 	border-radius: 10px;
 	width: 50%;
 	border: none;
+	cursor: pointer;
 }
