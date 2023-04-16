@@ -19,7 +19,8 @@ async function main() {
   const adminControllers = buildAdminControllers(databaseConnection);
 
   app.get('/users', usersControllers.getAll);
-  app.get('/users/:id', usersControllers.getById);
+  //app.get('/users/:id', usersControllers.getById);
+  app.get('/users/:instructor', usersControllers.getByInstructor);
   app.post('/users', usersControllers.create);
   app.put('/users/:id', usersControllers.update);
   app.delete('/users/:email', usersControllers.delete);
