@@ -19,7 +19,7 @@ function Grades() {
 	return (
 		<div>
 			<NavBar />
-			<h1>Grades Page</h1>
+			<h1>Grades</h1>
 			<GradeBook />
 		</div>
 	)

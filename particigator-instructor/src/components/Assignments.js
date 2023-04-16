@@ -20,7 +20,7 @@ function Assignments() {
 	return (
 		<div>
 			<NavBar />
-			<h1>Assignments Page</h1>
+			<h1>Assignments</h1>
 			<AssignmentsList />
 			<br />
 			<Link className="create-assignment" to='/createAssignment'>Create New Assignment</Link>
