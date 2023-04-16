@@ -24,7 +24,7 @@ export function buildAdminControllers(databaseConnection) {
         const email = req.body.data.email;
         const name = req.body.data.name;
         const pass = await bcrypt.hash(req.body.data.password, 10);
-        const reqMod = {email: email, password: pass, name: name};
+        const reqMod = {email: email, password: pass, name: name, currAss: -1};
   
         const user = await db.Admin.findOne({ email });
         if (user == null) {
@@ -36,7 +36,8 @@ export function buildAdminControllers(databaseConnection) {
         return res.status(401).json({ message: 'An existing user already has that email. Please use a different email or sign in.' });
       },
       update: async (req, res) => {
-        return res.sendStatus(501)
+        await db.Admin.updateOne({email: req.params.email}, {$set: {currAss: req.params.currAss}});
+        return res.sendStatus(201);;
       },
       delete: async (req, res) => {
         const email = req.params.email;

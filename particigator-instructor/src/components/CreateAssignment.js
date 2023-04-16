@@ -22,6 +22,7 @@ function CreateAssignment() {
 	const [imagePath, setImagePath] = useState("14KeEfpHRFnQFoqb5zixvecFTk07zqT0Y");
 	const [explanation, setExplanation] = useState("");
 	const [passcode, setPasscode] = useState("");
+	const [numID, setNumID] = useState("");
 
 	const [questionSubmitted, setQuestionSubmitted] = useState(false)
 
@@ -51,7 +52,9 @@ function CreateAssignment() {
 			correctAnswerIndex: 0,
 			imagePath: imagePath,
 			explanation: explanation,
-			passcode: passcode
+			passcode: passcode,
+			instructor: localStorage.getItem('email'), 
+			numID: numID,
 		});
 		setQuestionSubmitted(true);
 	}
@@ -83,6 +86,10 @@ function CreateAssignment() {
 	function handlePasscodeChange(event) {
 		setPasscode(event.target.value);
 	}
+	function handleNumIDChange(event) {
+		setNumID(event.target.value);
+	}
+
 
 	return (
 		<div>
@@ -177,6 +184,16 @@ function CreateAssignment() {
 						value={passcode}
 						placeholder="Enter passcode here!"
 						onChange={handlePasscodeChange}
+					/>
+				</div>
+				<div className="form-group">
+					<label htmlFor="ID">ID: </label>
+					<input
+						type="int"
+						name="ID"
+						value={numID}
+						placeholder="Enter ID here!"
+						onChange={handleNumIDChange}
 					/>
 				</div>
 				<button>Add this Assignment!</button>

@@ -4,13 +4,17 @@ import { API } from "../API";
 import { PowerSettingsNew, ContentCopy, Edit, Delete, Power } from '@mui/icons-material';
 import "./AssignmentsList.css"
 
-const fetchAssignments = async () => {
-  return await API.getAllQuestions();
+const fetchAssignments = async (instructor) => {
+  return await API.getInstructorQuestions(instructor);
+}
+
+const activateAssignment = async (instructor, currAss) => {
+	return await API.updateCurrAssignmentAdmin(instructor, currAss);
 }
 
 const AssignmentsList = () => {
   const [assignments, setAssignments] = useState(null);
-  const [active, setActive] = useState("");
+  const [active, setActive] = useState(-1);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -19,8 +23,13 @@ const AssignmentsList = () => {
     // TODO: Get current active assignment, or ""
     const fetchData = async () => {
       try {
-        const data = await fetchAssignments();
-        setAssignments(data);
+        const data = await fetchAssignments(localStorage.getItem('email'));
+        if(data == null){
+          setAssignments(null);
+        }
+        else{
+          setAssignments(data);
+        }
         setIsLoading(false);
       } catch (error) {
         setError(error);
@@ -62,17 +71,22 @@ const AssignmentsList = () => {
     navigate('/assignments');
   }
 
-  function activate(title) {
-    if (title == "") {
+  async function activate(title) {
+    console.log('My Title' + title);
+    if (title === -1 || title === null) {
       if (window.confirm("Deactivating " + active)) {
         // TODO: Deactivate current active assignment in the backend
         setActive(title);
+        console.log(title);
+        await activateAssignment(localStorage.getItem('email'), title);
       }
     }
     else {
-      if (window.confirm(active == "" ? "Activating " + title : "Deactivating " + active + " and activating " + title)) {
+      if (window.confirm(active == null ? "Activating " + title : "Deactivating " + active + " and activating " + title)) {
         // TODO: Activate this assignment in the backend
         setActive(title);
+        console.log(title);
+        await activateAssignment(localStorage.getItem('email'), title);
       }
     }
   }
@@ -85,13 +99,13 @@ const AssignmentsList = () => {
         {assignments !== null ? 
           assignments.map((assignment) => {
             return (
-              <div className={assignment.questionTitle == active ? "active assignment" : "assignment"} key={assignment.questionTitle}>
+              <div className={assignment.numID == active ? "active assignment" : "assignment"} key={assignment.numID}>
                 <div className="assignment_title">{assignment.questionTitle}</div>
                 <div className="assignment_buttons">
                   {
-                    assignment.questionTitle == active ?
+                    assignment.numID == active ?
                     <button className="action" onClick={() => activate("")}><PowerSettingsNew /></button> :
-                    <button className="action" onClick={() => activate(assignment.questionTitle)}><PowerSettingsNew /></button>
+                    <button className="action" onClick={() => activate(assignment.numID)}><PowerSettingsNew /></button>
                   }
                   <button className="action" onClick={() => copy(assignment)}><ContentCopy /></button>
                   <button className="action" onClick={() => edit(assignment)}><Edit /></button>

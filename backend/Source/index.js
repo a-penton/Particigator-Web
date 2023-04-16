@@ -28,7 +28,7 @@ async function main() {
   app.delete('/users/:email', usersControllers.delete);
 
   app.get('/questions', questionsControllers.getAll);
-  app.get('/questions/:id', questionsControllers.getById);
+  app.get('/questions/:instructor', questionsControllers.getByInstructor);
   app.post('/questions', questionsControllers.create);
   app.put('/questions/:id', questionsControllers.update);
   app.delete('/questions/:id', questionsControllers.delete);
