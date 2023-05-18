@@ -23,6 +23,8 @@ In one Bash terminal, run the backend:
 
 The portal should be functional in your browser with localhost at port 3000.
 
+# Contributors
+
 Developers: Julia Harbord, Andrew Penton, Robin Fintz
 
 Advisor: Amanpreet Kapoor (University of Florida)
