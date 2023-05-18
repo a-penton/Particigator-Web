@@ -9,6 +9,7 @@ const postNewQuestion = async (data) => {
 	return await API.postNewQuestion(data);
 }
 
+// Component allowing instructor to edit assignment, not yet implemented with backend (5/17/2023)
 function EditAssignment() {
 
 	// get props from AssignmentList when we navigated here

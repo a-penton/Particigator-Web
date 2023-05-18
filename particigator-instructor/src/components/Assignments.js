@@ -5,6 +5,7 @@ import NavBar from './NavBar';
 import AssignmentsList from './AssignmentsList';
 import './Assignments.css';
 
+// Component that houses assignment list
 function Assignments() {
 
 	const navigate = useNavigate();

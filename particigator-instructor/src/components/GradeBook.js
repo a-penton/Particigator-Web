@@ -14,6 +14,7 @@ const fetchGrades = async (instructor) => {
 	return await API.getGrades(instructor);
 }
 
+// Component showing all grades of students with the logged in instructor, houses table
 const GradeBook = () => {
   const [users, setUsers] = useState(null);
   const [isLoading, setIsLoading] = useState(true);

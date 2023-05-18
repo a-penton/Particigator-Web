@@ -2,6 +2,7 @@ import axios from "axios";
 
 let api = 'http://localhost:3001'; 
 
+// API that interfaces with backend so that data can be retrieved and displayed in frontend
 export class API {
   static async getAllUsers() {
     const response = await axios.get(`${api}/users`);
@@ -12,7 +13,6 @@ export class API {
     const res= await axios.get(`${api}/users/${instructor}`, {instructor: instructor})
     .then(response => {
       if(response.status !== 404){
-        //console.log('Working ' + response.data);
         return response.data;
       }
     })
@@ -20,8 +20,6 @@ export class API {
       console.error(error);
       return null;
     });
-    //console.log(response.data);
-    console.log('Working ' + res);
     return res;
   }
 
@@ -29,7 +27,6 @@ export class API {
     const res= await axios.get(`${api}/questions/${instructor}`, {instructor: instructor})
     .then(response => {
       if(response.status !== 404){
-        //console.log('Working ' + response.data);
         return response.data;
       }
     })
@@ -37,8 +34,6 @@ export class API {
       console.error(error);
       return null;
     });
-    //console.log(response.data);
-    console.log('Working ' + res);
     return res;
   }
 
@@ -46,7 +41,6 @@ export class API {
     const res= await axios.get(`${api}/submissions/${instructor}`, {instructor: instructor})
     .then(response => {
       if(response.status !== 404){
-        //console.log('Working ' + response.data);
         return response.data;
       }
     })
@@ -54,8 +48,6 @@ export class API {
       console.error(error);
       return null;
     });
-    //console.log(response.data);
-    console.log('Working ' + res);
     return res;
   }
 
@@ -67,7 +59,7 @@ export class API {
   static async postNewQuestion(data) {
     const response = await axios.post(`${api}/questions`, data)
     .then(response => {
-      console.log(response.data);
+      console.log("Question posted.");
     })
     .catch(error => {
       console.error(error);
@@ -87,11 +79,9 @@ export class API {
   }
 
   static async postNewAdmin(data) {
-    console.log(data.email);
     const response = await axios.post(`${api}/admin`, data)
     .then(response => {
       if(response.status == 200){
-        console.log('Working ' + response);
         return true;
       }
       

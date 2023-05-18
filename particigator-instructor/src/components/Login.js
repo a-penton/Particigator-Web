@@ -5,7 +5,7 @@ import Header from './Header.js';
 import './Login.css';
 import axios from "axios";
 
-
+// Component allowing instructor to login
 function Login() {
 
   const {loggedIn, setLoggedIn} = useContext(LoginContext);
@@ -43,7 +43,6 @@ function Login() {
 		});
   }
 
-  // TODO: check email/password against backend
   const handleSubmit = async (e) => {
     e.preventDefault();
     let api = 'http://localhost:3001'; 

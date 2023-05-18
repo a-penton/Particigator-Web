@@ -6,6 +6,8 @@ import AdminList from './AdminList';
 import './Home.css';
 import axios from "axios";
 
+
+// Component with home page with welcome screen and options
 function Home() {
 
 	const {loggedIn, setLoggedIn} = useContext(LoginContext);
@@ -52,7 +54,6 @@ function Home() {
 				<button className="home-button" onClick={() => {navigate('/students')}}>Students</button>
 			</div>
 			<br />
-			{/* <AdminList/> */}
 		</div>
 	)
 }

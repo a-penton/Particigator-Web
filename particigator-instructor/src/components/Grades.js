@@ -5,6 +5,7 @@ import NavBar from './NavBar';
 import GradeBook from './GradeBook';
 import './Grades.css';
 
+// Page housing Gradebook
 function Grades() {
 
 	const {loggedIn, setLoggedIn} = useContext(LoginContext);

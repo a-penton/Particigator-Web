@@ -8,6 +8,7 @@ const postNewQuestion = async (data) => {
 	return await API.postNewQuestion(data);
 }
 
+// Component allowing instructor to create assignment for their students, entering each field one by one
 function CreateAssignment() {
 
 	const navigate = useNavigate();

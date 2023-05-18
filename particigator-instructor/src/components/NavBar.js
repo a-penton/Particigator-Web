@@ -5,7 +5,7 @@ import { LoginContext } from '../LoginContext';
 import logo from '../assets/particigator-logo.svg';
 import "./NavBar.css";
 
-
+// Component allowing instructor to navigate between pages
 function NavBar() {
 
   const {loggedIn, setLoggedIn} = useContext(LoginContext);

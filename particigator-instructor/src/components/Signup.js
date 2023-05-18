@@ -10,6 +10,7 @@ const postNewAdmin = async (data) => {
 	return await API.postNewAdmin(data);
 }
 
+// Component allowing user to create account if they don't already have one
 function Signup() {
 
   const {loggedIn, setLoggedIn} = useContext(LoginContext);

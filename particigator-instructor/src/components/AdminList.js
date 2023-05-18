@@ -6,6 +6,7 @@ const fetchAdmin = async () => {
   return await API.getAllAdmin();
 }
 
+// Shows list of instructors (not currently shown on web, since you login with specific instructor account)
 const AdminList = () => {
   const [admin, setAdmin] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -35,7 +36,6 @@ const AdminList = () => {
           <tr>
             <th>Name</th>
             <th>Email</th>
-            {/* <th>Students</th> */}
             </tr>
           </thead>
           <tbody>
@@ -45,13 +45,6 @@ const AdminList = () => {
                 <tr key={adminer.email}>
                   <td>{adminer.name}</td>
                   <td>{adminer.email}</td>
-                  {/* <td>{adminer.students.map((student) => {
-                    return (
-                        <div>
-                            <p>{student}</p>
-                        </div>
-                    )
-                  })}</td> */}
                 </tr>
               )
             }) : null

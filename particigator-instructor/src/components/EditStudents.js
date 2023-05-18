@@ -10,6 +10,7 @@ const fetchUsers = async (instructor) => {
 	return await API.getInstructorUsers(instructor);
 }
 
+// Component that allows instructors to upload list of current students from CSV, parses CSV and posts to database
 function EditStudents() {
 
 	const {loggedIn, setLoggedIn} = useContext(LoginContext);
@@ -88,13 +89,11 @@ function EditStudents() {
 							errors += error.response.data.message + "\n"
 						  });
 					}
-					//setData(asyncData);
 				}
 				// TODO: Upload data to backend
 				// data is an array of rows
 				// each row is [studentID, sectionNumber]
 
-				// console.log(data);
 				// note data isn't immediately updated by setData for some reason,
 				// so this might log null/undefined
 			};
@@ -106,16 +105,6 @@ function EditStudents() {
 				window.alert("Data uploaded.");
 			}
 			navigate("/");
-			// if(asyncData !== null){
-			// 	window.alert("Data uploaded.");
-			// 	navigate("/");
-			// }
-			// else{
-			// 	window.alert("An uploaded user is already in the system with another instructor.");
-			// 	navigate("/");
-			// }
-        	// navigate("/students");
-			//alert(errors);
 		}
 		else {
 			alert('Error: No file selected');

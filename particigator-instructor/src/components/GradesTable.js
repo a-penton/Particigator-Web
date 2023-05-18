@@ -1,3 +1,4 @@
+// Component showing grades of students on all assignments (-, 0, or 1)
 function GradesTable({ grades, questions, students }) {
 	if (questions === null || students === null || grades === null) {
 		return <h3>No students, no assignments, or no grades to display</h3>

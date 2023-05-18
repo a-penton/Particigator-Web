@@ -12,6 +12,8 @@ const activateAssignment = async (instructor, currAss) => {
 	return await API.updateCurrAssignmentAdmin(instructor, currAss);
 }
 
+// Shows list of all assignments created by the logged in instructor
+// Copy, edit, and delete currently NOT implemented yet (5/17/2023)
 const AssignmentsList = () => {
   const [assignments, setAssignments] = useState(null);
   const [active, setActive] = useState(-1);
