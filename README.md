@@ -6,7 +6,9 @@ Particigator is designed to be a convenient resource for instructors to track at
 
 Meanwhile, our mobile application for students (featured in a different repository: https://github.com/a-penton/ParticiGator) is equipped with a functional login page, and an activity component where students will be able to solve a participation question and submit their answer along with a code given to them in class to help track their attendance. 
 
-To run the Particigator-Web for instructors:
+# Running the Particigator-Web application
+
+To run Particigator-Web for instructors:
 * Pull the repository from https://github.com/a-penton/Particigator-Web.git
 
 In one Bash terminal, run the frontend:
@@ -20,3 +22,7 @@ In one Bash terminal, run the backend:
 * npm start
 
 The portal should be functional in your browser with localhost at port 3000.
+
+Developers: Julia Harbord, Andrew Penton, Robin Fintz
+
+Advisor: Amanpreet Kapoor (University of Florida)
