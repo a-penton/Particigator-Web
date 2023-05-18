@@ -8,6 +8,7 @@ import { buildQuestionsControllers } from './Controllers/Questions';
 import { buildAdminControllers } from './Controllers/Admin';
 import { buildStudentSubmissionsControllers } from './Controllers/StudentSubmissions';
 
+// Set up express routes using controllers
 async function main() {
   const app = express();
   app.use(cors()); // Allow all CORS requests.
@@ -21,7 +22,6 @@ async function main() {
   const submissionsControllers = buildStudentSubmissionsControllers(databaseConnection);
 
   app.get('/users', usersControllers.getAll);
-  //app.get('/users/:id', usersControllers.getById);
   app.get('/users/:instructor', usersControllers.getByInstructor);
   app.post('/users', usersControllers.create);
   app.put('/users/:id', usersControllers.update);
@@ -49,8 +49,6 @@ async function main() {
   app.listen(3001, () => {
     console.log('Server started on port 3001');
   });
-
-  //module.exports = app;
 };
 
 main();

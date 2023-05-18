@@ -11,6 +11,8 @@ Meanwhile, our mobile application for students (featured in a different reposito
 To run Particigator-Web for instructors:
 * Pull the repository from https://github.com/a-penton/Particigator-Web.git
 
+*IMPORTANT* In the Particigator-Web/backend folder, replace the MONGO_URI string in the Database.js file with the correct connection string obtained from a contributor.
+
 In one Bash terminal, run the frontend:
 * cd Particigator-Web
 * cd particigator-instructor
