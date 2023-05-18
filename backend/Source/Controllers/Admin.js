@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
-//import jwt from 'jwt';
 
+// Function to enable CRUD operations with Admin database
 export function buildAdminControllers(databaseConnection) {
     const db = databaseConnection;
     
@@ -20,7 +20,6 @@ export function buildAdminControllers(databaseConnection) {
         };
       },
       create: async (req, res) => {
-        console.log(req.body.data.email);
         const email = req.body.data.email;
         const name = req.body.data.name;
         const pass = await bcrypt.hash(req.body.data.password, 10);
@@ -28,8 +27,6 @@ export function buildAdminControllers(databaseConnection) {
   
         const user = await db.Admin.findOne({ email });
         if (user == null) {
-          console.log("User cleared");
-          //console.log(req.body.data);
           await db.Admin.insertOne(reqMod);
           return res.sendStatus(201);
         }
@@ -53,13 +50,12 @@ export function buildAdminControllers(databaseConnection) {
           if (user == null) {
             return res.status(401).json({ message: 'Could not find user with that email. Please sign up.' });
           }
+
+          // Using bcrypt since passwords are encrypted in database
           const match = await bcrypt.compare(password, user.password);
           if (!match) {
             return res.status(401).json({ message: 'Invalid credentials. Please try entering your password again.' });
           }
-      
-          // const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-          // res.json({ token });
         } catch (error) {
           res.status(500).json({ message: 'Server error' });
         }

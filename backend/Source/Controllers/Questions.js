@@ -1,3 +1,4 @@
+// Function to enable CRUD operations with Questions database
 export function buildQuestionsControllers(databaseConnection) {
     const db = databaseConnection;
     
@@ -8,14 +9,11 @@ export function buildQuestionsControllers(databaseConnection) {
       },
       getByInstructor: async (req, res) => {
         const instructor = req.params.instructor;
-        console.log(instructor)
         const documents = await db.Questions.find({ instructor: instructor }).toArray();
         if (documents === null || documents.length === 0) {
-          console.log("Users not found");
           return res.status(404).send('Users not found');
         }
         else {
-          console.log(documents);
           return res.status(201).send(documents);
         }
       },

@@ -1,3 +1,4 @@
+// Function to enable CRUD operations with Users (Students) database
 export function buildUsersControllers(databaseConnection) {
   const db = databaseConnection;
   
@@ -16,19 +17,15 @@ export function buildUsersControllers(databaseConnection) {
     },
     getByInstructor: async (req, res) => {
       const instructor = req.params.instructor;
-      console.log(instructor)
       const documents = await db.Students.find({ instructor: instructor }).toArray();
       if (documents === null || documents.length === 0) {
-        console.log("Users not found");
         return res.status(404).send('Users not found');
       }
       else {
-        console.log(documents);
         return res.status(201).send(documents);
       }
     },
     create: async (req, res) => {
-      console.log(req.body.student);
       const id = req.body.student.id;
       const instructor = req.body.student.instructor;
       const reqMod = {id: id, instructor: instructor};
@@ -46,7 +43,6 @@ export function buildUsersControllers(databaseConnection) {
     },
     delete: async (req, res) => {
       const instructor = req.params.email;
-      console.log(req.params.email);
       const documents = await db.Students.findOne({instructor: instructor});
       if (documents !== null) {
         await db.Students.deleteMany({instructor: instructor});
